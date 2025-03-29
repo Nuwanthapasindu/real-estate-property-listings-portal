@@ -1,5 +1,6 @@
 package com.replp.listener;
 
+import com.replp.util.FileNames;
 import com.replp.util.JsonFileActions;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
@@ -12,8 +13,8 @@ public class JsonFileInitializer implements ServletContextListener {
     public void contextInitialized(ServletContextEvent sce) {
         System.out.println("Initializing data storage...");
         JsonFileActions jsonFileActions = new JsonFileActions();
-        System.out.println("Properties.json Create: " + jsonFileActions.dataStorageInitialization("properties.json"));
-        System.out.println("Users.json Create: " + jsonFileActions.dataStorageInitialization("users.json"));
+        System.out.println("Properties.json Create: " + jsonFileActions.dataStorageInitialization(FileNames.PROPERTIES));
+        System.out.println("Users.json Create: " + jsonFileActions.dataStorageInitialization(FileNames.USERS));
     }
 
     @Override
