@@ -1,5 +1,7 @@
 package com.replp.model;
 
+import java.util.Objects;
+
 public class User {
     private String _id;
     private String firstName;
@@ -66,6 +68,19 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true; // Same object reference
+        if (o == null || getClass() != o.getClass()) return false; // Null or different class
+        User user = (User) o;
+        return Objects.equals(_id, user._id); // Compare based on _id
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(_id); // Hash code based on _id
     }
 
     @Override
