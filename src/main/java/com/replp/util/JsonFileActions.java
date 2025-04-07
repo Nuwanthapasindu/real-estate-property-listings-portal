@@ -108,6 +108,47 @@ public class JsonFileActions {
         }
     }
 
+    /**
+     * Deletes an object from a JSON file. If the file does not exist, a RuntimeException will be thrown.
+     *
+     * @param objectToRemove the object to be deleted
+     * @return true if the object was deleted successfully
+     */
+    public <T> boolean deleteJsonFile(T objectToRemove) {
+        // Create a File object with the specified file path
+        File file = new File(filePath);
 
+        // Check if the file exists
+        if (!file.exists()) {
+            // Throw an exception if the file does not exist
+            throw new RuntimeException(file.getName() + "File does not exist");
+        }
+
+        try {
+            // Read the contents of the file into a list of objects of type T
+            List<T> data = readJsonFile(new TypeReference<List<T>>() {});
+
+            // Find the index of the objectToRemove in the list
+            int indexToRemove = data.indexOf(objectToRemove);
+
+            // If the objectToRemove is not found in the list, return false
+            if (indexToRemove == -1) {
+                // The objectToRemove was not found in the list, return false
+                return false;
+            }
+
+            // Remove the objectToRemove from the list
+            data.remove(indexToRemove);
+
+            // Write the modified list back to the file
+            OBJECT_MAPPER.writeValue(file, data);
+
+            // If the data was written successfully, return true
+            return true;
+        } catch (RuntimeException | IOException e) {
+            // If there is an error writing the file, wrap it in a RuntimeException
+            throw new RuntimeException(e);
+        }
+    }
 
 }
