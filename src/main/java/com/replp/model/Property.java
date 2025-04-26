@@ -4,6 +4,8 @@ import java.util.List;
 
 public class Property {
     private int _id;
+    private String title;
+    private String type;
     private String location;
     private double price;
     private double size;
@@ -14,8 +16,10 @@ public class Property {
     public Property() {
     }
 
-    public Property(int _id, String location, double price, double size, String description, List<File> images, String userId) {
+    public Property(int _id, String title, String type, String location, double price, double size, String description, List<File> images, String userId) {
         this._id = _id;
+        this.title = title;
+        this.type = type;
         this.location = location;
         this.price = price;
         this.size = size;
@@ -30,6 +34,22 @@ public class Property {
 
     public void set_id(int _id) {
         this._id = _id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getLocation() {
