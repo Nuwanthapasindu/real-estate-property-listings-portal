@@ -26,7 +26,7 @@ public class PropertyDao {
 
 
     public boolean writeProperty(Property property){
-        return  jsonFileActions.writeJsonFile(property,Property.class);
+        return  jsonFileActions.writeJsonFile(property);
     }
 
 
