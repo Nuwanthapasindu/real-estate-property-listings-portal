@@ -3,21 +3,21 @@ package com.replp.model;
 import java.util.List;
 
 public class Property {
-    private int _id;
-    private String title;
-    private String type;
-    private String location;
-    private double price;
-    private double size;
-    private String description;
-    private List<File> images;
-    private String userId;
+    protected int id;
+    protected String title;
+    protected String type;
+    protected String location;
+    protected double price;
+    protected double size;
+    protected String description;
+    protected List<File> images;
+    protected String userId;
 
     public Property() {
     }
 
-    public Property(int _id, String title, String type, String location, double price, double size, String description, List<File> images, String userId) {
-        this._id = _id;
+    public Property(int id, String title, String type, String location, double price, double size, String description, List<File> images, String userId) {
+        this.id = id;
         this.title = title;
         this.type = type;
         this.location = location;
@@ -28,12 +28,12 @@ public class Property {
         this.userId = userId;
     }
 
-    public int get_id() {
-        return _id;
+    public int getId() {
+        return id;
     }
 
-    public void set_id(int _id) {
-        this._id = _id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -103,7 +103,7 @@ public class Property {
     @Override
     public String toString() {
         return "Property{" +
-                "_id='" + _id + '\'' +
+                "id='" + id + '\'' +
                 ", location='" + location + '\'' +
                 ", price=" + price +
                 ", size=" + size +
