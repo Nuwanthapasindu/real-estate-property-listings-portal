@@ -39,6 +39,6 @@ public class UserDAO {
      * @return true if the write is successful, false otherwise
      */
     public boolean writeUser(User users) {
-        return jsonFileActions.writeJsonFile(users, User.class);
+        return jsonFileActions.writeJsonFile(users);
     }
 }
