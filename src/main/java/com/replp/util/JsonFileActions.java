@@ -2,6 +2,7 @@ package com.replp.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class JsonFileActions {
-    private final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private final ObjectMapper OBJECT_MAPPER = new ObjectMapper().registerModule(new JavaTimeModule());
     private  String filePath;
 
     public JsonFileActions() {
@@ -83,10 +84,9 @@ public class JsonFileActions {
     /**
      * Write new data to a JSON file. If the file does not exist, a RuntimeException will be thrown.
      * @param newData the data to be written to the file
-     * @param clazz the class of the data to be written
      * @return true if the data was written successfully
      */
-    public <T> boolean writeJsonFile( T newData, Class<T> clazz) {
+    public <T> boolean writeJsonFile( T newData) {
         File file = new File(filePath);
         if (!file.exists()) {
             throw new RuntimeException(file.getName() + "File does not exist");
@@ -106,6 +106,87 @@ public class JsonFileActions {
             throw new RuntimeException(e);
         }
     }
+
+    /**
+     * Deletes an object from a JSON file by its index. If the file does not exist, a RuntimeException will be thrown.
+     *
+     * @param indexToRemove the index of the object to be deleted
+     * @return true if the object was deleted successfully, false otherwise
+     */
+    public <T> boolean deleteJsonFile(int indexToRemove) {
+        // Create a File object with the specified file path
+        File file = new File(filePath);
+
+        // Check if the file exists
+        if (!file.exists()) {
+            // Throw an exception if the file does not exist
+            throw new RuntimeException(file.getName() + "File does not exist");
+        }
+
+        try {
+            // Read the contents of the file into a list of objects of type T
+            List<T> data = readJsonFile(new TypeReference<List<T>>() {});
+
+//            // Remove the objectToRemove from the list
+            data.remove(indexToRemove);
+
+            // Write the modified list back to the file
+            OBJECT_MAPPER.writeValue(file, data);
+
+            // If the data was written successfully, return true
+            return true;
+        } catch (RuntimeException | IOException e) {
+            // If there is an error writing the file, wrap it in a RuntimeException
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    /**
+     * Updates an object in a JSON file. If the file does not exist, a RuntimeException will be thrown.
+     * @param updatedData the updated object to be written to the file
+     * @param indexToRemove the index of the object to be updated
+     * @return true if the object was updated successfully
+     */
+    public <T> boolean updateJsonFile(T updatedData, int indexToRemove) {
+
+        // Create a File object with the specified file path
+        File file = new File(filePath);
+
+        // Check if the file exists
+        if (!file.exists()) {
+            // Throw an exception if the file does not exist
+            throw new RuntimeException(file.getName() + "File does not exist");
+        }
+
+        // Create a TypeReference for the list of objects of type T
+        TypeReference<List<T>> typeReference = new TypeReference<List<T>>() {};
+
+        try {
+            // Read the contents of the file into a list of objects of type T
+            List<T> data = readJsonFile(typeReference);
+
+            // If the indexToRemove is out of bounds, return false
+            if (indexToRemove < 0 || indexToRemove >= data.size()) {
+                return false;
+            }
+
+            // Update the object in the list
+            data.set(indexToRemove, updatedData);
+
+            // Write the modified list back to the file
+            OBJECT_MAPPER.writeValue(file, data);
+
+            // If the data was written successfully, return true
+            return true;
+
+        } catch (RuntimeException | IOException e) {
+            // If there is an error writing the file, wrap it in a RuntimeException
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 
 
