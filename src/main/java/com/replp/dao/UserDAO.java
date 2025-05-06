@@ -28,7 +28,7 @@ public class UserDAO {
      */
     public Optional<User> findUserById(String id) {
         List<User> users = readUsers();
-        User findUuser = users.stream().filter(user -> user.get_id().equals(id)).findFirst().orElse(null);
+        User findUuser = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElse(null);
         return Optional.ofNullable(findUuser);
     }
 
