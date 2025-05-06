@@ -56,30 +56,36 @@
             <div class="col-md-6">
                 <div class="signup-form">
                     <h1 class="mb-4">Let's level up your brand, together</h1>
-                    <form id="signupForm">
+                   <% String error = request.getParameter("error"); %>
+                   <% if (error != null) { %>
+                    <div class="alert alert-danger" role="alert">
+                     <%= error %>
+                    </div>
+                    <% } %>
+                    <form id="signupForm" action="register" method="POST">
                         <div class="mb-3">
                             <label for="firstName" class="form-label">First Name</label>
-                            <input type="text" class="form-control" id="firstName" placeholder="Your first name">
+                            <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Your first name">
                         </div>
                         <div class="mb-3">
                             <label for="lastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control" id="lastName" placeholder="Your last name">
+                            <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Your last name">
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="you@company.com">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="you@company.com">
                         </div>
                         <div class="mb-3">
                             <label for="phone" class="form-label">Phone number</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="+1 (555) 000-0000">
+                            <input type="tel" class="form-control" id="phone" name="phone" placeholder="+1 (555) 000-0000">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Your password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Your password">
                         </div>
                         <div class="mb-3">
                             <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Re-type your password">
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Re-type your password">
                         </div>
                         <button type="submit" class="btn w-100 btn-primary">Signup</button>
                     </form>
