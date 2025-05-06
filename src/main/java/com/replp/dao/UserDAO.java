@@ -41,4 +41,11 @@ public class UserDAO {
     public boolean writeUser(User users) {
         return jsonFileActions.writeJsonFile(users);
     }
+
+    public Optional<User> findByEmail(String email){
+        List<User> users = readUsers();
+        User findUuser = users.stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
+        return Optional.ofNullable(findUuser);
+
+    }
 }
