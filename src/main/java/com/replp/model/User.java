@@ -1,5 +1,8 @@
 package com.replp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class User {
@@ -9,6 +12,8 @@ public class User {
     private String contactNumber;
     private String email;
     private String password;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdAt;
 
     public User() {
     }
