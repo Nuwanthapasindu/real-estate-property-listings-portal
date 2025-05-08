@@ -3,7 +3,7 @@ package com.replp.model;
 import java.util.List;
 
 public class Property {
-    protected int id;
+    protected String id;
     protected String title;
     protected String type;
     protected String location;
@@ -16,7 +16,7 @@ public class Property {
     public Property() {
     }
 
-    public Property(int id, String title, String type, String location, double price, double size, String description, List<File> images, String userId) {
+    public Property(String id, String title, String type, String location, double price, double size, String description, List<File> images, String userId) {
         this.id = id;
         this.title = title;
         this.type = type;
@@ -28,11 +28,11 @@ public class Property {
         this.userId = userId;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
