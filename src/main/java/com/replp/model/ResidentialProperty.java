@@ -10,7 +10,7 @@ public class ResidentialProperty extends Property {
     public ResidentialProperty() {
     }
 
-    public ResidentialProperty(int id, String title, String type, String location, double price, double size, String description, List<File> images, String userId, int bedrooms, int bathrooms, boolean hasGarage) {
+    public ResidentialProperty(String id, String title, String type, String location, double price, double size, String description, List<File> images, String userId, int bedrooms, int bathrooms, boolean hasGarage) {
         super(id, title, type, location, price, size, description, images, userId);
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;

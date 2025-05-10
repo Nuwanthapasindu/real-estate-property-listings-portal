@@ -10,7 +10,7 @@ public class IndustrialProperty extends Property {
 
     }
 
-    public IndustrialProperty(int id, String title, String type, String location, double price, double size, String description, List<File> images, String userId, String industryType, boolean hasLoadingDock) {
+    public IndustrialProperty(String id, String title, String type, String location, double price, double size, String description, List<File> images, String userId, String industryType, boolean hasLoadingDock) {
         super(id, title, type, location, price, size, description, images, userId);
         this.industryType = industryType;
         this.hasLoadingDock = hasLoadingDock;

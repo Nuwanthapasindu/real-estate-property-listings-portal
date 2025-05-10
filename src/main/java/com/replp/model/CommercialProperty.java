@@ -9,7 +9,7 @@ public class CommercialProperty extends Property {
     public CommercialProperty() {
     }
 
-    public CommercialProperty(int id, String title, String type, String location, double price, double size, String description, List<File> images, String userId, String businessType, boolean hasParking) {
+    public CommercialProperty(String id, String title, String type, String location, double price, double size, String description, List<File> images, String userId, String businessType, boolean hasParking) {
         super(id, title, type, location, price, size, description, images, userId);
         this.businessType = businessType;
         this.hasParking = hasParking;
