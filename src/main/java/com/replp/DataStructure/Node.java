@@ -1,15 +1,16 @@
 package com.replp.DataStructure;
 
+
 import com.replp.model.Property;
 
 public class Node {
-    Property property;
-    Node left, right;
+    public Property property;
+    public Node left;
+    public Node right;
 
-    Node(Property property) {
+    public Node(Property property) {
         this.property = property;
-        left = right = null;
+        this.left = null;
+        this.right = null;
     }
 }
-
-
