@@ -38,3 +38,28 @@ public class QuickSortProperty {
         }
     }
 
+
+ class Main {
+    public static void main(String[] args) {
+        List<Property> propertyList = new ArrayList<>();
+
+        // Sample properties
+        propertyList.add(new Property("1", "Villa", "House", "Miami", 500000, 3000, "Luxury villa", new ArrayList<File>(), "user1"));
+        propertyList.add(new Property("2", "Apartment", "Flat", "NYC", 300000, 1000, "Modern apartment", new ArrayList<File>(), "user2"));
+        propertyList.add(new Property("3", "Cottage", "House", "Denver", 200000, 1500, "Cozy cottage", new ArrayList<File>(), "user3"));
+        propertyList.add(new Property("4", "Penthouse", "Flat", "LA", 800000, 2500, "High-end penthouse", new ArrayList<File>(), "user4"));
+
+        System.out.println("Before sorting:");
+        for (Property p : propertyList) {
+            System.out.println(p);
+        }
+
+        // Apply quick sort
+        QuickSortProperty.quickSort(propertyList, 0, propertyList.size() - 1);
+
+        System.out.println("\nAfter sorting by price:");
+        for (Property p : propertyList) {
+            System.out.println(p);
+        }
+    }
+}

@@ -5,7 +5,7 @@ import com.replp.model.Property;
 import java.util.ArrayList;
 import java.util.List;
 
- class PropertyBST {
+public class PropertyBST {
     private Node root;
 
     public PropertyBST() {
