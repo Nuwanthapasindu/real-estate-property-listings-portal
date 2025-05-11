@@ -28,6 +28,9 @@ public class Property {
         this.userId = userId;
     }
 
+    public Property(String number, String villa, String house, String miami, int i, int i1, String luxuryVilla) {
+    }
+
     public String getId() {
         return id;
     }

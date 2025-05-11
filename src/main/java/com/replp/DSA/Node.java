@@ -1,4 +1,4 @@
-package com.replp.DataStructure;
+package com.replp.DSA;
 
 
 import com.replp.model.Property;
