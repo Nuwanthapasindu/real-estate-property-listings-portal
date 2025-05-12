@@ -1,3 +1,11 @@
+<%
+    Boolean isAuthenticatedObj = (Boolean) request.getSession().getAttribute("isAuthenticated");
+    boolean isAuthenticated = isAuthenticatedObj != null && isAuthenticatedObj.booleanValue();
+
+    if (isAuthenticated) {
+        response.sendRedirect(request.getContextPath()+"/");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
