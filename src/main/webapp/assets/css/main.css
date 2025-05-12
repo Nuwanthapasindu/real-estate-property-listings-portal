@@ -15,6 +15,7 @@
     --font-family-sans-serif: 'Inter', sans-serif;
     --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --font-family-base: var(--font-family-sans-serif);
+
 }
 
 /* Bootstrap Color Overrides */
