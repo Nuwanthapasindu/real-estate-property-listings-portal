@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class PublicUserDao {
-    final JsonFileActions jsonFileActions = new JsonFileActions(FileNames.generatePath(FileNames.PUBLISHERS));
+    final JsonFileActions jsonFileActions = new JsonFileActions(FileNames.generatePath(FileNames.USERS));
 
 
     /**
