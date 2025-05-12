@@ -1,5 +1,6 @@
 package com.replp.model;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PublicUser extends User {
@@ -11,8 +12,8 @@ public class PublicUser extends User {
     }
 
 
-    public PublicUser(String id, String firstName, String lastName, String contactNumber, String email, String password, String type, List<Property> wishList) {
-        super(id, firstName, lastName, contactNumber, email, password);
+    public PublicUser(String id, String firstName, String lastName, String contactNumber, String email, String password, LocalDateTime createdAt, String type, List<Property> wishList) {
+        super(id, firstName, lastName, contactNumber, email, password, createdAt);
         this.type = type;
         this.wishList = wishList;
     }
@@ -42,8 +43,9 @@ public class PublicUser extends User {
                 ", contactNumber='" + contactNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
-                ", wishList=" + wishList +
                 ", type='" + type + '\'' +
+                ", wishList=" + wishList +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }
