@@ -1,3 +1,12 @@
+<%
+    String otp = (String) request.getSession().getAttribute("otp");
+    String email = (String) request.getSession().getAttribute("email");
+
+    if (otp == null || otp.isEmpty() || email == null || email.isEmpty()) {
+        response.sendRedirect("login.jsp");
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,11 +36,17 @@
                     <div class="ms-lg-5">
                         <h2 class="display-6 fw-bold mb-4">Help Us Confirm It's You</h2>
                         <p class="text-muted mb-4">Please enter the OTP code sent to your device to verify your identity.</p>
-                        
-                        <form>
+
+                        <% String error = request.getParameter("error"); %>
+                        <% if (error != null) { %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                        <% } %>
+                        <form action="verify-otp" method="post">
                             <div class="mb-4">
                                 <label for="otp" class="form-label">OTP</label>
-                                <input type="text" class="form-control form-control-lg" id="otp" placeholder="******" maxlength="6" autocomplete="off">
+                                <input type="text" class="form-control form-control-lg" id="otp" name="otp" placeholder="******" maxlength="6" autocomplete="off">
                                 <small class="text-muted mt-2 d-block">Enter the 6-digit code sent to your device</small>
                             </div>
                             
