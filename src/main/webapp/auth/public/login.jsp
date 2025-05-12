@@ -22,7 +22,7 @@
 </head>
 <body>
 
-<jsp:include page="/components/navbar-light.jsp" />
+<jsp:include page="/components/navbar-dark.jsp" />
 
     <!-- Main Content -->
     <main class="container">

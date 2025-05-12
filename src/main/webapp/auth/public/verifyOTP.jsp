@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="../../assets/css/navbarFooter.css">
 </head>
 <body>
-<jsp:include page="/components/navbar-light.jsp" />
+<jsp:include page="/components/navbar-dark.jsp" />
 
     <!-- Main Content -->
     <main class="py-5">

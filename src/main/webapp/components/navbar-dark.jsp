@@ -15,16 +15,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="<%= request.getContextPath()%>/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Listings</a>
+                    <a class="nav-link" href="<%= request.getContextPath()%>/listings.jsp">Listings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About Us</a>
+                    <a class="nav-link" href="<%= request.getContextPath()%>/about-us.jsp">About Us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Contact Us</a>
+                    <a class="nav-link" href="<%= request.getContextPath()%>/wish-list.jsp">Wish List</a>
                 </li>
             </ul>
             <div class="nav-right">

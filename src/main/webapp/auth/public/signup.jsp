@@ -22,7 +22,7 @@
 </head>
 <body>
     <!-- Navigation -->
-    <jsp:include page="/components/navbar-light.jsp" />
+    <jsp:include page="/components/navbar-dark.jsp" />
     <!-- Main Content -->
     <main class="container">
         <div class="row align-items-center min-vh-100">
