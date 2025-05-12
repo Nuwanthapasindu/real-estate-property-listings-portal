@@ -1,3 +1,11 @@
+<%
+    String otp = (String) request.getSession().getAttribute("otp");
+    String email = (String) request.getSession().getAttribute("email");
+
+    if (otp == null || otp.isEmpty() || email == null || email.isEmpty()) {
+        response.sendRedirect("login.jsp");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,15 +33,21 @@
             <div class="col-md-6">
                 <div class="signup-form">
                     <h1 class="mb-4">Reset Your Password</h1>
-                    <form id="loginForm">
+                    <% String error = request.getParameter("error"); %>
+                    <% if (error != null) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                    <% } %>
+                    <form action="reset-password" method="post">
                  
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Your password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Your password">
                         </div>
                         <div class="mb-3">
                             <label for="confirmPassword" class="form-label">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirmPassword" placeholder="Your password">
+                            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Your password">
                         </div>
                         
                         <button type="submit" class="btn w-100 btn-primary">Reset</button>
