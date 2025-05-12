@@ -8,13 +8,13 @@ public class Property {
     private double price;
     private double size;
     private String description;
-    private List<File> images;
+    private List<SystemFile> images;
     private String userId;
 
     public Property() {
     }
 
-    public Property(String _id, String location, double price, double size, String description, List<File> images, String userId) {
+    public Property(String _id, String location, double price, double size, String description, List<SystemFile> images, String userId) {
         this._id = _id;
         this.location = location;
         this.price = price;
@@ -64,11 +64,11 @@ public class Property {
         this.description = description;
     }
 
-    public List<File> getImages() {
+    public List<SystemFile> getImages() {
         return images;
     }
 
-    public void setImages(List<File> images) {
+    public void setImages(List<SystemFile> images) {
         this.images = images;
     }
 
