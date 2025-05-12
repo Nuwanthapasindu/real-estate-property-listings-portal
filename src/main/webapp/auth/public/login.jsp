@@ -1,3 +1,11 @@
+<%
+    Boolean isAuthenticatedObj = (Boolean) request.getSession().getAttribute("isAuthenticated");
+    boolean isAuthenticated = isAuthenticatedObj != null && isAuthenticatedObj.booleanValue();
+
+    if (isAuthenticated) {
+        response.sendRedirect(request.getContextPath()+"/");
+    }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,14 +33,20 @@
             <div class="col-md-6">
                 <div class="signup-form">
                     <h1 class="mb-4">Sign In to List Your Property</h1>
-                    <form id="loginForm">
+                    <% String error = request.getParameter("error"); %>
+                    <% if (error != null) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                    <% } %>
+                    <form action="login" method="post">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="you@company.com">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="you@company.com">
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" placeholder="Your password">
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Your password">
                         </div>
                         <div class="mb-3 d-flex justify-content-end">
                             <a href="<%= request.getContextPath()%>/auth/public/forgotPassword.jsp" class="text-primary text-decoration-none">Forgot Password?</a>
