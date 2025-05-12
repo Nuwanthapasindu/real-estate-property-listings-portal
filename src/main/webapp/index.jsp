@@ -5,7 +5,7 @@
 <head>
     <title>Real Estate File Upload</title>
     <style>
-        /* This is CSS to style the page, making it look nice */
+        /* Styling for the page */
         body { font-family: Arial, sans-serif; margin: 20px; }
         .form-container { max-width: 500px; margin-bottom: 20px; }
         .form-container input { width: 100%; margin: 5px 0; padding: 8px; }
@@ -17,53 +17,66 @@
     </style>
 </head>
 <body>
-    <!-- This is a heading to tell users what to do -->
+
+    <!-- Page heading -->
     <h2>Upload Property Image</h2>
+
+    <!-- Form for uploading files -->
     <div class="form-container">
-        <!-- This is a form where users can pick a file to upload -->
-        <form action="../PropertyController" method="post" enctype="multipart/form-data">
+        <form action="<%= request.getContextPath() %>/file-upload" method="post" enctype="multipart/form-data">
             <label>Select Image:</label>
+            <!-- Input to choose image file -->
             <input type="file" name="file" accept="image/*" required><br>
-            <!-- This button sends the file to the server -->
+            <!-- Submit button -->
             <input type="submit" value="Upload">
         </form>
     </div>
 
-    <!-- This part checks if there’s a message to show the user -->
+    <!-- Display error or success messages from backend -->
     <% String error = (String) request.getAttribute("error"); %>
     <% String success = (String) request.getAttribute("success"); %>
     <% if (error != null) { %>
-        <!-- If there’s an error, show it in red -->
         <p class="error"><%= error %></p>
     <% } %>
     <% if (success != null) { %>
-        <!-- If it worked, show a green success message -->
         <p class="success"><%= success %></p>
     <% } %>
 
-    <!-- This is a table to show all the files that were uploaded -->
+    <!-- Table to show list of uploaded files -->
     <h3>Uploaded Files</h3>
     <table class="file-table">
         <tr>
-            <!-- Table headers to label the columns -->
             <th>File Name</th>
             <th>Actions</th>
         </tr>
+
         <%
-            // This gets the path where files are stored on the server
+            // Get the path to the 'uploads' folder in the server
             String uploadPath = getServletContext().getRealPath("") + File.separator + "uploads";
             File uploadDir = new File(uploadPath);
+
+            // Check if the directory exists
             if (uploadDir.exists()) {
-                // Loop through each file in the uploads folder
+                // Loop through each file in the folder
                 for (File file : uploadDir.listFiles()) {
                     if (file.isFile()) {
         %>
         <tr>
-            <!-- Show the name of each file -->
+            <!-- Show file name -->
             <td><%= file.getName() %></td>
             <td>
-                <!-- Link to download the file -->
-                <a href="../PropertyController?action=download&file=<%= file.getName() %>">Download</a>
-                <!-- Link to delete the file with a confirmation -->
+                <!-- Download link -->
+                <a href="../PropertyController?action=download&file=<%= file.getName() %>">Download</a> |
+                <!-- Delete link with confirmation -->
                 <a href="../PropertyController?action=delete&file=<%= file.getName() %>"
-                   onclick="return confirm('Are you sure you want
+                   onclick="return confirm('Are you sure you want to delete this file?');">Delete</a>
+            </td>
+        </tr>
+        <%
+                    }
+                }
+            }
+        %>
+    </table>
+</body>
+</html>
