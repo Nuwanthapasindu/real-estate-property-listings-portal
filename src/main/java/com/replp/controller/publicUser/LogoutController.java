@@ -1,12 +1,13 @@
 package com.replp.controller.publicUser;
 
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-
+@WebServlet("/auth/public/logout")
 public class LogoutController extends HttpServlet {
 
     @Override

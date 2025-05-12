@@ -1,3 +1,9 @@
+<%
+    Boolean isAuthenticatedObj = (Boolean) request.getSession().getAttribute("isAuthenticated");
+    boolean isAuthenticated = isAuthenticatedObj != null && isAuthenticatedObj.booleanValue();
+%>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
     <div class="container">
         <a class="navbar-brand" href="#">
@@ -22,12 +28,21 @@
                 </li>
             </ul>
             <div class="nav-right">
+                <% if (!isAuthenticated) { %>
                 <a href="<%= request.getContextPath()%>/auth/public/login.jsp" class="btn btn-link">
                     <div class="user-icon-circle">
                         <i class="fas fa-user"></i>
                     </div>
                     Login / Register
                 </a>
+                <% } else { %>
+                <a href="<%= request.getContextPath()%>/auth/public/logout" class="btn btn-link">
+                    <div class="user-icon-circle">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    Logout
+                </a>
+                <% } %>
             </div>
             <div class="nav-right become-partner">
                 <a href="#" class="btn btn-primary">
