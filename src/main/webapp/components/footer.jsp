@@ -21,12 +21,12 @@
             <a href="#" class="text-white text-decoration-none">About Us</a>
           </li>
           <li class="mb-3 mb-md-0 ms-md-4">
-            <a href="#" class="text-white text-decoration-none">Contact Us</a>
+            <a href="#" class="text-white text-decoration-none">Wish List</a>
           </li>
         </ul>
       </div>
       <div class="col-md-3">
-        <div class="social-links d-flex justify-content-center justify-content-md-end">
+        <div class="social-links d-flex justify-content-center justify-content-md-end gap-3">
           <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-facebook-f"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
