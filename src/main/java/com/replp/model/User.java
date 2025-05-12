@@ -1,5 +1,8 @@
 package com.replp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class User {
@@ -9,17 +12,20 @@ public class User {
     protected String contactNumber;
     protected String email;
     protected String password;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    protected LocalDateTime createdAt;
 
     public User() {
     }
 
-    public User(String id, String firstName, String lastName, String contactNumber, String email, String password) {
+    public User(String id, String firstName, String lastName, String contactNumber, String email, String password, LocalDateTime createdAt) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.contactNumber = contactNumber;
         this.email = email;
         this.password = password;
+        this.createdAt = createdAt;
     }
 
     public String getId() {
@@ -70,6 +76,14 @@ public class User {
         this.password = password;
     }
 
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true; // Same object reference
@@ -92,6 +106,7 @@ public class User {
                 ", contactNumber='" + contactNumber + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }
