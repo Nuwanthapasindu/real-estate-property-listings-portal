@@ -1,7 +1,9 @@
 package com.replp.controller;
 
 
+import com.replp.model.SystemFile;
 import com.replp.util.FileUtil;
+import com.replp.util.UUIDGenerator;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -10,47 +12,30 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.Part;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.nio.file.Paths;
+import java.time.LocalDateTime;
 
 // This is a special class that handles requests from the website
-@WebServlet("/PropertyController")
+@WebServlet(urlPatterns ={"/file-upload"} )
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB limit for small file parts
                  maxFileSize = 1024 * 1024 * 10,      // 10MB max file size
                  maxRequestSize = 1024 * 1024 * 50)   // 50MB max total request size
 public class FileController extends HttpServlet {
     private static final String UPLOAD_DIR = "uploads"; // Folder where files will be saved
 
+    @Override
     // This method runs when a file is uploaded (POST request)
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Get the file the user uploaded
-        Part filePart = request.getPart("file");
-        // Get the original name of the file
-        String fileName = FileUtil.extractFileName(filePart);
-        // Path where files will be stored on the server
-        String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIR;
-
-        try {
-            // Create a folder if it doesn’t exist
-            File uploadDir = new File(uploadPath);
-            if (!uploadDir.exists()) uploadDir.mkdir();
-            // Make a unique name for the file using the current time
-            String newFileName = System.currentTimeMillis() + "_" + fileName;
-            // Save the file to the server
-            FileUtil.uploadFile(filePart, uploadPath, newFileName);
-            // Tell the user it worked
-            request.setAttribute("success", "File uploaded successfully!");
-        } catch (Exception e) {
-            // If something goes wrong, show the error
-            request.setAttribute("error", "Upload failed: " + e.getMessage());
+        String uploadPath = getServletContext().getRealPath(UPLOAD_DIR);
+        try{
+            Part filePart = request.getPart("file");
+            uploadFile(request,filePart,uploadPath);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        // Go back to the index page to show the result
-        request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
     }
-
     // This method runs for download or delete actions (GET request)
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -94,4 +79,13 @@ public class FileController extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/jsp/index.jsp").forward(request, response);
         }
     }
+
+        protected SystemFile uploadFile(HttpServletRequest req, Part filePart, String filePath) throws IOException {
+            String path =   FileUtil.saveUploadedFile(req,filePart,filePath);
+            String originalFileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+            return new SystemFile(UUIDGenerator.generate(),originalFileName,path,filePart.getSize(),filePart.getContentType(),LocalDateTime.now());
+
+        }
 }
+
+
