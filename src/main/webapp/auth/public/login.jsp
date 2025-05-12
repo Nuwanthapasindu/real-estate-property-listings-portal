@@ -35,7 +35,7 @@
                             <input type="password" class="form-control" id="password" placeholder="Your password">
                         </div>
                         <div class="mb-3 d-flex justify-content-end">
-                            <a href="<%= request.getContextPath()%>/auth/public/email-verification.jsp" class="text-primary text-decoration-none">Forgot Password?</a>
+                            <a href="<%= request.getContextPath()%>/auth/public/forgotPassword.jsp" class="text-primary text-decoration-none">Forgot Password?</a>
                         </div>
                         <button type="submit" class="btn w-100 btn-primary">Sign In</button>
                     </form>
