@@ -1,5 +1,7 @@
 package com.replp.model;
 
+import java.time.LocalDateTime;
+
 public class Publisher extends User {
     private String type;
 
@@ -7,8 +9,8 @@ public class Publisher extends User {
         super();
     }
 
-    public Publisher(String id, String firstName, String lastName, String contactNumber, String email, String password, String type) {
-        super(id, firstName, lastName, contactNumber, email, password);
+    public Publisher(String id, String firstName, String lastName, String contactNumber, String email, String password, LocalDateTime createdAt, String type) {
+        super(id, firstName, lastName, contactNumber, email, password, createdAt);
         this.type = type;
     }
 
@@ -30,6 +32,7 @@ public class Publisher extends User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", type='" + type + '\'' +
+                ", createdAt=" + createdAt +
                 '}';
     }
 }
