@@ -14,7 +14,8 @@ public class JsonFileInitializer implements ServletContextListener {
         System.out.println("Initializing data storage...");
         JsonFileActions jsonFileActions = new JsonFileActions();
         System.out.println("Properties.json Create: " + jsonFileActions.dataStorageInitialization(FileNames.PROPERTIES));
-        System.out.println("Users.json Create: " + jsonFileActions.dataStorageInitialization(FileNames.USERS));
+        System.out.println("PublicUsers.json Create: " + jsonFileActions.dataStorageInitialization(FileNames.USERS));
+        System.out.println("Publishers.json Create: " + jsonFileActions.dataStorageInitialization(FileNames.PUBLISHERS));
     }
 
     @Override
