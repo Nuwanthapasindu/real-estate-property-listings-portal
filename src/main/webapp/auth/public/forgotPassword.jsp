@@ -25,10 +25,16 @@
             <div class="col-md-6">
                 <div class="signup-form">
                     <h1 class="mb-4">Help Us Confirm It's You</h1>
-                    <form id="loginForm">
+                    <% String error = request.getParameter("error"); %>
+                    <% if (error != null) { %>
+                    <div class="alert alert-danger" role="alert">
+                        <%= error %>
+                    </div>
+                    <% } %>
+                    <form action="forgot-password" method="post">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="you@company.com">
+                            <input type="email" class="form-control" id="email" name = "email" placeholder="you@company.com">
                         </div>
                         <button type="submit" class="btn w-100 btn-primary">Verify</button>
                     </form>
