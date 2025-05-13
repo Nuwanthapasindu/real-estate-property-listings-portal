@@ -1,4 +1,4 @@
-package com.replp.controller;
+package com.replp.controller.publisher;
 
 import com.replp.model.User;
 import com.replp.services.PublisherAuthService;
