@@ -43,7 +43,7 @@ public class PublisherAuthLoginController extends HttpServlet {
             session.setAttribute("contactNumber",user.getContactNumber());
             session.setAttribute("email",user.getEmail());
 
-            resp.sendRedirect(req.getContextPath() +"/");
+            resp.sendRedirect(req.getContextPath() +"/auth/publisher/property");
 
         } catch (Exception e) {
             resp.sendRedirect(req.getContextPath() +"/auth/publisher/login.jsp?error=Something went wrong.");
