@@ -1,20 +1,25 @@
 package com.replp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class User {
-    private String _id;
+    private String id;
     private String firstName;
     private  String lastName;
     private String contactNumber;
     private String email;
     private String password;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createdAt;
 
     public User() {
     }
 
-    public User(String _id, String firstName, String lastName, String contactNumber, String email, String password) {
-        this._id = _id;
+    public User(String id, String firstName, String lastName, String contactNumber, String email, String password) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.contactNumber = contactNumber;
@@ -22,12 +27,12 @@ public class User {
         this.password = password;
     }
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -75,18 +80,18 @@ public class User {
         if (this == o) return true; // Same object reference
         if (o == null || getClass() != o.getClass()) return false; // Null or different class
         User user = (User) o;
-        return Objects.equals(_id, user._id); // Compare based on _id
+        return Objects.equals(id, user.id); // Compare based on _id
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(_id); // Hash code based on _id
+        return Objects.hash(id); // Hash code based on _id
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "_id='" + _id + '\'' +
+                "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", contactNumber='" + contactNumber + '\'' +

@@ -20,4 +20,8 @@ public class PasswordHash {
             };
         }
     }
+    public static boolean checkPassword(String userInputPassword,String storedHashedPassword){
+        String hashedInput = hashPassword(userInputPassword);
+        return hashedInput.equals(storedHashedPassword);
+    }
 }
