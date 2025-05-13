@@ -8,6 +8,7 @@ public class Property {
     protected String location;
     protected double price;
     protected double size;
+    protected String sizeType;
     protected String description;
     protected List<SystemFile> images;
     protected String userId;
@@ -15,12 +16,13 @@ public class Property {
     public Property() {
     }
 
-    public Property(String id, String title, String location, double price, double size, String description, List<SystemFile> images, String userId) {
+    public Property(String id, String title, String location, double price, double size, String sizeType, String description, List<SystemFile> images, String userId) {
         this.id = id;
         this.title = title;
         this.location = location;
         this.price = price;
         this.size = size;
+        this.sizeType = sizeType;
         this.description = description;
         this.images = images;
         this.userId = userId;
@@ -53,7 +55,7 @@ public class Property {
     public double getPrice() {
         return price;
     }
-
+    
     public void setPrice(double price) {
         this.price = price;
     }
@@ -88,6 +90,14 @@ public class Property {
 
     public void setUserId(String userId) {
         this.userId = userId;
+    }
+
+    public String getSizeType() {
+        return sizeType;
+    }
+
+    public void setSizeType(String sizeType) {
+        this.sizeType = sizeType;
     }
 
     @Override

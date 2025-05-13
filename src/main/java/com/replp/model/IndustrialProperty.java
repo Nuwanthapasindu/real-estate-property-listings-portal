@@ -10,8 +10,8 @@ public class IndustrialProperty extends Property {
 
     }
 
-    public IndustrialProperty(String id, String title, String location, double price, double size, String description, List<SystemFile> images, String userId, String industryType, boolean hasLoadingDock) {
-        super(id, title, location, price, size, description, images, userId);
+    public IndustrialProperty(String id, String title, String location, double price, double size, String sizeType, String description, List<SystemFile> images, String userId, String industryType, boolean hasLoadingDock) {
+        super(id, title, location, price, size, sizeType, description, images, userId);
         this.industryType = industryType;
         this.hasLoadingDock = hasLoadingDock;
     }
@@ -35,15 +35,16 @@ public class IndustrialProperty extends Property {
     @Override
     public String toString() {
         return "IndustrialProperty{" +
-                "id='" + id + '\'' +
+                "industryType='" + industryType + '\'' +
+                ", hasLoadingDock=" + hasLoadingDock +
+                ", id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", location='" + location + '\'' +
                 ", price=" + price +
                 ", size=" + size +
+                ", sizeType='" + sizeType + '\'' +
                 ", description='" + description + '\'' +
                 ", images=" + images +
-                ", industryType='" + industryType + '\'' +
-                ", hasLoadingDock=" + hasLoadingDock +
                 ", userId='" + userId + '\'' +
                 '}';
     }

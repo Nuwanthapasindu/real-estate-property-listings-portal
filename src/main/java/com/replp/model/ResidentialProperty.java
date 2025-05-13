@@ -10,8 +10,8 @@ public class ResidentialProperty extends Property {
     public ResidentialProperty() {
     }
 
-    public ResidentialProperty(String id, String title, String location, double price, double size, String description, List<SystemFile> images, String userId, int bedrooms, int bathrooms, boolean hasGarage) {
-        super(id, title, location, price, size, description, images, userId);
+    public ResidentialProperty(String id, String title, String location, double price, double size, String sizeType, String description, List<SystemFile> images, String userId, int bedrooms, int bathrooms, boolean hasGarage) {
+        super(id, title, location, price, size, sizeType, description, images, userId);
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
         this.hasGarage = hasGarage;
@@ -44,16 +44,17 @@ public class ResidentialProperty extends Property {
     @Override
     public String toString() {
         return "ResidentialProperty{" +
-                "id='" + id + '\'' +
+                "bedrooms=" + bedrooms +
+                ", bathrooms=" + bathrooms +
+                ", hasGarage=" + hasGarage +
+                ", id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", location='" + location + '\'' +
                 ", price=" + price +
                 ", size=" + size +
+                ", sizeType='" + sizeType + '\'' +
                 ", description='" + description + '\'' +
                 ", images=" + images +
-                ", bedrooms=" + bedrooms +
-                ", bathrooms=" + bathrooms +
-                ", hasGarage=" + hasGarage +
                 ", userId='" + userId + '\'' +
                 '}';
     }
