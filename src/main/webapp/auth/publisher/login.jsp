@@ -8,14 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../css/login.css">
+    <link rel="stylesheet" href="../../assets/css/login.css">
 </head>
 <body>
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img src="../../Images/logo.png" alt="Homez" class="logo">
+                <img src="../../assets/img/logo.png" alt="Homez" class="logo">
                 
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -52,7 +52,7 @@
     <main class="container">
         <div class="row align-items-center min-vh-100">
             <div class="col-md-6">
-                <img src="../../Images/Image.png" alt="Modern Architecture" class="img-fluid rounded">
+                <img src="../../assets/img/ImageLogin.png" alt="Modern Architecture" class="img-fluid rounded">
             </div>
             <div class="col-md-6">
                 <div class="signup-form">
@@ -74,7 +74,7 @@
                             <input type="password" class="form-control" id="password" name="password" placeholder="Your password">
                         </div>
                         <div class="mb-3 d-flex justify-content-end">
-                            <a href="#" class="text-primary text-decoration-none">Forgot Password?</a>
+                            <a href="./forgotPassword.jsp" class="text-primary text-decoration-none">Forgot Password?</a>
                         </div>
                         <button type="submit" class="btn w-100 btn-primary">Sign In</button>
                     </form>
