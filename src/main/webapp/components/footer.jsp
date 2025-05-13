@@ -12,16 +12,16 @@
       <div class="col-md-6 mb-4 mb-md-0">
         <ul class="list-unstyled d-flex flex-column flex-md-row justify-content-center mb-0 gap-3">
           <li class="mb-3 mb-md-0">
-            <a href="#" class="text-primary text-decoration-none">Home</a>
+            <a href="<%= request.getContextPath() %>/" class="<%= request.getRequestURI().endsWith("/")? "text-primary":"text-white" %> text-decoration-none">Home</a>
           </li>
           <li class="mb-3 mb-md-0 ms-md-4">
-            <a href="#" class="text-white text-decoration-none">Properties</a>
+            <a href="<%= request.getContextPath() %>/listings.jsp" class="<%= request.getRequestURI().endsWith("/listings.jsp")? "text-primary":"text-white" %> text-decoration-none">Properties</a>
           </li>
           <li class="mb-3 mb-md-0 ms-md-4">
-            <a href="#" class="text-white text-decoration-none">About Us</a>
+            <a href="<%= request.getContextPath() %>/about-us.jsp" class="<%= request.getRequestURI().endsWith("/about-us.jsp")? "text-primary":"text-white"%> text-decoration-none">About Us</a>
           </li>
           <li class="mb-3 mb-md-0 ms-md-4">
-            <a href="#" class="text-white text-decoration-none">Wish List</a>
+            <a href="<%= request.getContextPath() %>/wish-list.jsp" class="<%= request.getRequestURI().endsWith("/wish-list.jsp")? "text-primary" :"text-white"%> text-decoration-none">Wish List</a>
           </li>
         </ul>
       </div>
