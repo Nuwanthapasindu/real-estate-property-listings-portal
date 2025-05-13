@@ -1,3 +1,5 @@
+<%@ page import="com.replp.model.Property" %>
+<%@ page import="java.util.List" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +53,18 @@
             <!-- Property Grid -->
             <div class="property-grid">
                 <div class="row">
-                    <!-- Property Card 1 -->
+                 <% List<Property> properties = (List<Property>) request.getAttribute("properties"); %>
+
+                    <% if (properties.isEmpty()) { %>
+                    <div class="col-md-12">
+                        <div class="no-properties">
+                            <p>No properties found.</p>
+                        </div>
+                    </div>
+                    <% } %>
+
+
+                    <% for (Property property : properties) { %>
                     <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                         <div class="property-card">
                             <div class="property-image">
@@ -67,247 +80,7 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Property Card 1 -->
-                    <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
-                            <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
-                            </div>
-                            <div class="property-details">
-
-                                <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
-                                </div>
-                                <div class="property-price">LKR 50,800,000</div>
-                            </div>
-                        </div>
-                    </div>
-
+                    <% } %>
                 </div>
             </div>
         </div>
