@@ -73,7 +73,7 @@
 <section class="property-listings py-5">
     <div class="container">
         <div class="row g-4">
-            <a href="#!" class=" text-decoration-none col-lg-3 col-md-6 col-sm-12">
+            <a href="<%= request.getContextPath()%>/single-property.jsp?id=1" class=" text-decoration-none col-lg-3 col-md-6 col-sm-12">
                 <div class="property-card">
                     <div class="property-image">
                         <img src="<%= request.getContextPath()%>/assets/img/publicPasswordImage.png" alt="Luxury Family Home" class="img-fluid">
