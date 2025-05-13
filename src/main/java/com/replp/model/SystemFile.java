@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import java.time.LocalDateTime;
 
-public class File {
-    private String _id;
+public class SystemFile {
+    private String id;
     private String name;
     private String path;
     private long size;
@@ -13,11 +13,11 @@ public class File {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime createdAt;
 
-    public File() {
+    public SystemFile() {
     }
 
-    public File(String _id, String name, String path, long size, String type, LocalDateTime createdAt) {
-        this._id = _id;
+    public SystemFile(String id, String name, String path, long size, String type, LocalDateTime createdAt) {
+        this.id = id;
         this.name = name;
         this.path = path;
         this.size = size;
@@ -25,12 +25,13 @@ public class File {
         this.createdAt = createdAt;
     }
 
-    public String get_id() {
-        return _id;
+
+    public String getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -76,7 +77,7 @@ public class File {
     @Override
     public String toString() {
         return "File{" +
-                "_id='" + _id + '\'' +
+                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", path='" + path + '\'' +
                 ", size=" + size +

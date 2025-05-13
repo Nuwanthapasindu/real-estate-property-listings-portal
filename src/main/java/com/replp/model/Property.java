@@ -3,23 +3,19 @@ package com.replp.model;
 import java.util.List;
 
 public class Property {
-    protected String id;
-    protected String title;
-    protected String type;
-    protected String location;
-    protected double price;
-    protected double size;
-    protected String description;
-    protected List<File> images;
-    protected String userId;
+    private String _id;
+    private String location;
+    private double price;
+    private double size;
+    private String description;
+    private List<SystemFile> images;
+    private String userId;
 
     public Property() {
     }
 
-    public Property(String id, String title, String type, String location, double price, double size, String description, List<File> images, String userId) {
-        this.id = id;
-        this.title = title;
-        this.type = type;
+    public Property(String _id, String location, double price, double size, String description, List<SystemFile> images, String userId) {
+        this._id = _id;
         this.location = location;
         this.price = price;
         this.size = size;
@@ -28,31 +24,12 @@ public class Property {
         this.userId = userId;
     }
 
-    public Property(String number, String villa, String house, String miami, int i, int i1, String luxuryVilla) {
+    public String get_id() {
+        return _id;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String getLocation() {
@@ -87,11 +64,11 @@ public class Property {
         this.description = description;
     }
 
-    public List<File> getImages() {
+    public List<SystemFile> getImages() {
         return images;
     }
 
-    public void setImages(List<File> images) {
+    public void setImages(List<SystemFile> images) {
         this.images = images;
     }
 
@@ -106,7 +83,7 @@ public class Property {
     @Override
     public String toString() {
         return "Property{" +
-                "id='" + id + '\'' +
+                "_id='" + _id + '\'' +
                 ", location='" + location + '\'' +
                 ", price=" + price +
                 ", size=" + size +
