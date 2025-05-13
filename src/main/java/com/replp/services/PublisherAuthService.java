@@ -57,4 +57,8 @@ public class PublisherAuthService {
     public boolean verifyOtp(String email, String inputOtp, String sessionOtp) {
         return inputOtp != null && inputOtp.equals(sessionOtp);
     }
+    public boolean updatePassword(String email, String newPassword) {
+        return
+                userDAO.updatePassword(email,newPassword);
+    }
 }
