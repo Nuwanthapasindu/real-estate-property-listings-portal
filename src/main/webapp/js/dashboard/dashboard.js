@@ -84,11 +84,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // Remove currency symbol, commas and convert to number
         return parseFloat(priceString.replace(/[^0-9.-]+/g, ''));
     }
-    
+
     // Add New Property button functionality
     const addPropertyBtn = document.querySelector('.add-property-btn');
     addPropertyBtn.addEventListener('click', function() {
         // Redirect to property creation page or show modal
-        alert('Add New Property functionality will be implemented here');
+        window.location.href ="property/create";
     });
 });

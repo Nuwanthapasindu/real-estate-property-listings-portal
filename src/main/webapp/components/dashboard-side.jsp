@@ -16,12 +16,6 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-home"></i>
-          <span>Your Listings</span>
-        </a>
-      </li>
-      <li class="nav-item">
         <a class="nav-link" href="../profile/profile.html">
           <i class="fas fa-user"></i>
           <span>Profile</span>
