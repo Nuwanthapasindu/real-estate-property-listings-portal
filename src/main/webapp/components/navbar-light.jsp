@@ -6,7 +6,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-transparent">
   <div class="container">
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="<%= request.getContextPath()%>/">
       <img src="<%= request.getContextPath()%>/assets/img/logo-white.png" alt="Homez" class="logo">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

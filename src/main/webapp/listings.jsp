@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Title</title>
+    <title>All Properties</title>
     <!-- Add Inter font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -27,8 +27,8 @@
     <jsp:include page="components/navbar-light.jsp" />
 
     <!-- Header with title -->
-    <div class="wishlist-header mb-4">
-        <h1 class="page-title">My Wishlist</h1>
+    <div class="d-flex align-items-center justify-content-center h-100">
+        <h1 class="page-title">All Listings in One Place</h1>
     </div>
 </div>
 <!-- Search Bar Section -->
