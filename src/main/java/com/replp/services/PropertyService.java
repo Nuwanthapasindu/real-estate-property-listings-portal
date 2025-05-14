@@ -49,7 +49,8 @@ public class PropertyService {
             }
         }
         if (index==-1)throw new Exception("Property not found.");
-        return propertyDao.deleteProperty(index,ID);
+//        return propertyDao.deleteProperty(index,ID);
+        return false;
    }
    public Optional<Property> findByID(String ID){
        List<Property>properties=propertyDao.getAllProperties();
