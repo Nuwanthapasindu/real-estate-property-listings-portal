@@ -18,6 +18,7 @@
     <jsp:include page="/components/dashboard-side.jsp" />
 
     <!-- Main Content -->
+    <!-- Main Content -->
     <div class="main-content">
         <!-- Header with greeting -->
         <div class="dashboard-header">
@@ -53,7 +54,7 @@
             <!-- Property Grid -->
             <div class="property-grid">
                 <div class="row">
-                 <% List<Property> properties = (List<Property>) request.getAttribute("properties"); %>
+                    <% List<Property> properties = (List<Property>) request.getAttribute("properties"); %>
 
                     <% if (properties.isEmpty()) { %>
                     <div class="col-md-12">
@@ -68,15 +69,15 @@
                     <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
                         <div class="property-card">
                             <div class="property-image">
-                                <img src="./property-1.jpg" alt="Luxury Family Home" class="img-fluid">
+                                <img src="<%= property.getImages().get(0).getPath() %>" alt="Luxury Family Home" class="img-fluid">
                             </div>
                             <div class="property-details">
 
                                 <div class="details">
-                                    <h5 class="property-title">Luxury Family Home</h5>
-                                    <p class="property-address">123 Oceana Ave</p>
+                                    <h5 class="property-title"><%= property.getTitle() %></h5>
+                                    <p class="property-address"><%= property.getLocation() %></p>
                                 </div>
-                                <div class="property-price">LKR 50,800,000</div>
+                                <div class="property-price">LKR <%= property.getPrice() %></div>
                             </div>
                         </div>
                     </div>

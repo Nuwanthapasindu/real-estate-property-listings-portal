@@ -10,26 +10,31 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/auth/publisher/property")
 public class PropertyReadController extends HttpServlet {
-   private final PropertyService propertyService = new PropertyService();
+private  final PropertyService propertyService = new PropertyService();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // check uses is Authenticated
         HttpSession session = req.getSession();
-        if (session.getAttribute("id") == null) {
+        String userId = (String) session.getAttribute("id");
+        if (userId == null) {
             resp.sendRedirect(req.getContextPath() + "/auth/publisher/login.jsp");
             return;
         }
 
-        String userId = (String) session.getAttribute("id");
-        List<Property> properties = propertyService.getPropertiesByUser(userId);
-        req.setAttribute("properties", properties);
-        req.getRequestDispatcher("/WEB-INF/jsp/dashboard.jsp").forward(req, resp);
 
+       try {
+           List<Property> properties = propertyService.getPropertiesByUser(userId);
+           req.setAttribute("properties", properties);
+           req.getRequestDispatcher("/WEB-INF/jsp/dashboard.jsp").forward(req, resp);
+           System.out.println(propertyService.getAllProperties());
+       }catch (Exception e){
+           req.getRequestDispatcher("/WEB-INF/jsp/dashboard.jsp?error=Something went wrong").forward(req, resp);
+       }
     }
 }

@@ -7,6 +7,7 @@ import com.replp.util.UUIDGenerator;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.Part;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -19,7 +20,7 @@ public class PropertyService {
 
 
     public boolean addProperty(HttpServletRequest req, Property property, Collection<Part> parts) throws Exception {
-        final String UPLOAD_FOLDER = System.getProperty("user.home") + "/.replp/uploads/";
+        final String UPLOAD_FOLDER = req.getServletContext().getRealPath("/uploads");
         List<SystemFile> files = new ArrayList<>();
 
         try {
@@ -57,13 +58,12 @@ public class PropertyService {
        return properties.stream().filter(property -> property.getId().equalsIgnoreCase(ID)).findFirst();
    }
 
-   public List<Property>getAllProperties(){return propertyDao.getAllProperties();}
+   public List<Property>getAllProperties(){
+        return propertyDao.getAllProperties();
+   }
 
    public List<Property>getPropertiesByUser(String userId){
-      List<Property>properties= getAllProperties();
-       return properties.stream()
-               .filter(property -> property.getUserId() != null &&
-                       property.getUserId().equalsIgnoreCase(userId))
-               .collect(Collectors.toList());
+       List<Property>properties=propertyDao.getAllProperties();
+       return properties.stream().filter(property -> property.getUserId().equalsIgnoreCase(userId)).collect(Collectors.toList());
    }
 }

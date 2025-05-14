@@ -22,7 +22,7 @@ public class FileUtil {
         File file = new File(uploadPath, uniqueFileName);
         filePart.write(file.getAbsolutePath());
 
-        return file.getAbsolutePath();
+        return req.getContextPath() +"/uploads/" + uniqueFileName;
     }
 
     private static String sanitizeFileName(String fileName) {
