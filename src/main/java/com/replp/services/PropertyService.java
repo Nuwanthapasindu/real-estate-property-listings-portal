@@ -63,7 +63,7 @@ public class PropertyService {
    }
 
    public List<Property>getPropertiesByUser(String userId){
-       List<Property>properties=propertyDao.getAllProperties();
+       List<Property>properties= getAllProperties();
        return properties.stream().filter(property -> property.getUserId().equalsIgnoreCase(userId)).collect(Collectors.toList());
    }
 }

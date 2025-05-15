@@ -77,7 +77,7 @@
                                     <h5 class="property-title"><%= property.getTitle() %></h5>
                                     <p class="property-address"><%= property.getLocation() %></p>
                                 </div>
-                                <div class="property-price">LKR <%= property.getPrice() %></div>
+                                <div class="property-price"> <%= property.getPrice() %></div>
                             </div>
                         </div>
                     </div>
@@ -91,5 +91,11 @@
 <!-- Bootstrap JS Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<%= request.getContextPath() %>/js/dashboard/dashboard.js"></script>
+<script>
+    const propertyPrices = document.querySelectorAll('.property-price');
+    propertyPrices.forEach(price => {
+        price.textContent = Intl.NumberFormat('en-US', { style: 'currency', currency: 'LKR' }).format(price.textContent);
+    });
+</script>
 </body>
 </html>
