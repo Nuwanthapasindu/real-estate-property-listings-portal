@@ -6,17 +6,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PropertyBST {
-    private Node root;
+    private static Node root;
+        static {
+            root = null;
+        }
 
-    public PropertyBST() {
-        this.root = null;
-    }
-
-    public void insert(Property property) {
+    public static void insert(Property property) {
         root = insertRec(root, property);
     }
 
-    private Node insertRec(Node root, Property property) {
+    private static Node insertRec(Node root, Property property) {
         if (root == null) {
             return new Node(property);
         }
@@ -30,11 +29,11 @@ public class PropertyBST {
         return root;
     }
 
-    public Property findByTitle(String title) {
+    public static Property  findByTitle(String title) {
         return findByTitleRec(root, title);
     }
 
-    private Property findByTitleRec(Node root, String title) {
+    private static Property findByTitleRec(Node root, String title) {
         if (root == null) {
             return null;
         }
@@ -51,11 +50,11 @@ public class PropertyBST {
         return findByTitleRec(root.right, title);
     }
 
-    public void deleteById(String id) {
+    public static void deleteById(String id) {
         root = deleteRec(root, id);
     }
 
-    private Node deleteRec(Node root, String id) {
+    private static Node deleteRec(Node root, String id) {
         if (root == null) {
             return null;
         }
@@ -82,26 +81,26 @@ public class PropertyBST {
         return root;
     }
 
-    private Node findMin(Node root) {
+    private static Node findMin(Node root) {
         while (root.left != null) {
             root = root.left;
         }
         return root;
     }
 
-    public boolean updateById(String id, Property newProperty) {
+    public static boolean updateById(String id, Property newProperty) {
         deleteById(id);
         insert(newProperty);
         return true;
     }
 
-    public List<Property> inOrderTraversal() {
+    public static List<Property> inOrderTraversal() {
         List<Property> result = new ArrayList<>();
         inOrderRec(root, result);
         return result;
     }
 
-    private void inOrderRec(Node root, List<Property> result) {
+    private static void inOrderRec(Node root, List<Property> result) {
         if (root != null) {
             inOrderRec(root.left, result);
             result.add(root.property);
