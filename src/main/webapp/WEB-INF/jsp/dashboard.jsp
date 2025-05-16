@@ -29,24 +29,9 @@
             <div class="section-header d-flex justify-content-between align-items-center">
                 <div class="d-flex align-items-center gap-5">
                     <h3>All Properties</h3>
-                    <div class="search-container">
-                        <input type="text" class="form-control search-input" placeholder="Search">
-                        <i class="fas fa-search search-icon"></i>
-                    </div>
                 </div>
                 <div class="action-buttons">
-                    <button class="btn btn-primary add-property-btn">Add New Property</button>
-                    <div class="dropdown sort-dropdown">
-                        <button class="btn dropdown-toggle" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                            Sort by: <span class="sort-value">Newest</span>
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="sortDropdown">
-                            <li><a class="dropdown-item" href="#">Newest</a></li>
-                            <li><a class="dropdown-item" href="#">Oldest</a></li>
-                            <li><a class="dropdown-item" href="#">Price: Low to High</a></li>
-                            <li><a class="dropdown-item" href="#">Price: High to Low</a></li>
-                        </ul>
-                    </div>
+                    <a href="<%= request.getContextPath() %>/auth/publisher/property/create" class="btn btn-primary add-property-btn text-decoration-none">Add New Property</a>
                 </div>
             </div>
 
