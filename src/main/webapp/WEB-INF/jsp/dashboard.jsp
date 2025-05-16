@@ -18,7 +18,6 @@
     <jsp:include page="/components/dashboard-side.jsp" />
 
     <!-- Main Content -->
-    <!-- Main Content -->
     <div class="main-content">
         <!-- Header with greeting -->
         <div class="dashboard-header">
@@ -56,18 +55,16 @@
                 <div class="row">
                     <% List<Property> properties = (List<Property>) request.getAttribute("properties"); %>
 
-                    <% if (properties.isEmpty()) { %>
+                    <% if (properties == null || properties.isEmpty()) { %>
                     <div class="col-md-12">
                         <div class="no-properties">
                             <p>No properties found.</p>
                         </div>
                     </div>
-                    <% } %>
-
-
+                    <% }else { %>
                     <% for (Property property : properties) { %>
                     <div class="col-md-6 col-lg-4 col-xl-3 mb-4">
-                        <div class="property-card">
+                        <a href="<%= request.getContextPath() %>/auth/publisher/property/update?id=<%= property.getId() %>" class="property-card">
                             <div class="property-image">
                                 <img src="<%= property.getImages().get(0).getPath() %>" alt="Luxury Family Home" class="img-fluid">
                             </div>
@@ -79,9 +76,9 @@
                                 </div>
                                 <div class="property-price"> <%= property.getPrice() %></div>
                             </div>
-                        </div>
+                        </a>
                     </div>
-                    <% } %>
+                    <% } }%>
                 </div>
             </div>
         </div>
