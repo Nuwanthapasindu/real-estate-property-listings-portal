@@ -28,4 +28,9 @@ public class FileUtil {
     private static String sanitizeFileName(String fileName) {
         return fileName.replaceAll("[^a-zA-Z0-9\\.\\-_]", "_");
     }
+
+    public static boolean deleteFile(String filePath) {
+        File file = new File(filePath);
+        return file.delete();
+    }
 }
