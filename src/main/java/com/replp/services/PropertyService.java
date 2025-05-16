@@ -41,20 +41,20 @@ public class PropertyService {
         }
     }
 
-//    public boolean deleteProperty(String ID) throws Exception {
-//        Optional<Property> property = findByID(ID);
-//        if (property.isPresent()) {
-//            boolean deleted = propertyDao.deleteProperty(property.get(),ID);
-//            if (deleted) {
-//                for (SystemFile file : property.get().getImages()) {
-//                    FileUtil.deleteFile(file.getPath());
-//                }
-//            }
-//
-//        }
-//        return true;
-//
-//   }
+    public boolean deleteProperty(String ID) throws Exception {
+        Optional<Property> property = findByID(ID);
+        if (property.isPresent()) {
+            boolean deleted = propertyDao.deleteProperty(property.get(),ID);
+            if (deleted) {
+                for (SystemFile file : property.get().getImages()) {
+                    FileUtil.deleteFile(file.getPath());
+                }
+            }
+
+        }else throw new Exception("Property not found");
+        return true;
+
+   }
    public Optional<Property> findByID(String ID){
        return  propertyDao.findPropertyByID(ID);
    }

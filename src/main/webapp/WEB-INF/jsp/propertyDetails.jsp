@@ -59,6 +59,7 @@
         <div class="properties-section">
             <div class="section-header d-flex justify-content-end align-items-center mb-4">
                 <div class="action-buttons">
+
                     <form action="<%= request.getContextPath() %>/auth/publisher/property/delete" method="post">
                         <input type="hidden" name="propertyId" value="<%= property.getId() %>">
                         <button type="submit" class="btn btn-danger add-property-btn">Delete Property</button>
@@ -174,6 +175,7 @@
 
                     </div>
                 </div>
+                <button type="button" class="btn w-100 btn-primary add-property-btn">Update Property</button>
             </form>
         </div>
     </div>
