@@ -41,21 +41,22 @@ public class PropertyService {
         }
     }
 
-    public boolean deleteProperty(String ID) throws Exception {
-        List<Property>properties=propertyDao.getAllProperties();
-        int index=-1;
-        for (int i = 0; i < properties.size(); i++) {
-            if(properties.get(i).getId().equalsIgnoreCase(ID)){
-                index=i;
-            }
-        }
-        if (index==-1)throw new Exception("Property not found.");
-//        return propertyDao.deleteProperty(index,ID);
-        return false;
-   }
+//    public boolean deleteProperty(String ID) throws Exception {
+//        Optional<Property> property = findByID(ID);
+//        if (property.isPresent()) {
+//            boolean deleted = propertyDao.deleteProperty(property.get(),ID);
+//            if (deleted) {
+//                for (SystemFile file : property.get().getImages()) {
+//                    FileUtil.deleteFile(file.getPath());
+//                }
+//            }
+//
+//        }
+//        return true;
+//
+//   }
    public Optional<Property> findByID(String ID){
-       List<Property>properties=propertyDao.getAllProperties();
-       return properties.stream().filter(property -> property.getId().equalsIgnoreCase(ID)).findFirst();
+       return  propertyDao.findPropertyByID(ID);
    }
 
    public List<Property>getAllProperties(){
