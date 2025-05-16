@@ -1,4 +1,4 @@
-package com.replp.controller.publisher;
+package com.replp.controller.publisher.property;
 
 import com.replp.model.CommercialProperty;
 import com.replp.model.IndustrialProperty;
@@ -12,9 +12,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.*;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
-import java.util.UUID;
 
 @WebServlet("/auth/publisher/property/create")
 @MultipartConfig(
@@ -22,7 +20,7 @@ import java.util.UUID;
         maxFileSize = 1024 * 1024 * 10,     // 10MB
         maxRequestSize = 1024 * 1024 * 50   // 50MB
 )
-public class PublisherCreateController extends HttpServlet {
+public class PropertyCreateController extends HttpServlet {
 
     private final PropertyService propertyService = new PropertyService();
 
@@ -79,7 +77,6 @@ public class PublisherCreateController extends HttpServlet {
                 throw new IllegalArgumentException("Invalid property type: " + type);
         }
 
-
       boolean success =  propertyService.addProperty(req, property, fileParts);
 
         if (success) {
@@ -89,7 +86,6 @@ public class PublisherCreateController extends HttpServlet {
             resp.sendRedirect(req.getContextPath() + "/auth/publisher/property/create?error=Failed to create property");
             return;
         }
-
 
     } catch (Exception e) {
         resp.sendRedirect(req.getContextPath() + "/auth/publisher/property/create?error="+  e.getMessage());

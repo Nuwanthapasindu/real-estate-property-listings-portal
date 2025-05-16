@@ -1,4 +1,4 @@
-package com.replp.controller.publisher;
+package com.replp.controller.publisher.property;
 
 import com.replp.model.Property;
 import com.replp.services.PropertyService;
@@ -10,7 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/auth/publisher/property")
