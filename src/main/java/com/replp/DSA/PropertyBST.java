@@ -50,6 +50,27 @@ public class PropertyBST {
         return findByTitleRec(root.right, title);
     }
 
+    public static Property findById(String id) {
+        return findByIdRec(root, id);
+    }
+
+    private static Property findByIdRec(Node root, String id) {
+        if (root == null) {
+            return null;
+        }
+
+        if (root.property.getId().equals(id)) {
+            return root.property;
+        }
+
+        Property leftResult = findByIdRec(root.left, id);
+        if (leftResult != null) {
+            return leftResult;
+        }
+
+        return findByIdRec(root.right, id);
+    }
+
     public static void deleteById(String id) {
         root = deleteRec(root, id);
     }
