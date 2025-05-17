@@ -99,7 +99,7 @@
                         <input type="text" class="form-control" id="industryType" name="industryType" placeholder="e.g., Manufacturing, Warehouse, Factory">
                     </div>
                     <div class="mb-4 form-check">
-                        <input type="checkbox" class="form-check-input" id="hasLoadingDock" name="hasLoadingDock">
+                        <input type="checkbox" class="form-check-input" id="hasLoadingDock" name="hasLoadingDock" value="true">
                         <label class="form-check-label" for="hasLoadingDock">Has Loading Dock</label>
                     </div>
                 </div>
@@ -114,7 +114,7 @@
                         <input type="number" class="form-control" id="bathrooms" name="bathrooms" min="0" value="0">
                     </div>
                     <div class="mb-4 form-check">
-                        <input type="checkbox" class="form-check-input" id="hasGarage" name="hasGarage">
+                        <input type="checkbox" class="form-check-input" id="hasGarage" name="hasGarage" value="true">
                         <label class="form-check-label" for="hasGarage">Has Garage</label>
                     </div>
                 </div>
