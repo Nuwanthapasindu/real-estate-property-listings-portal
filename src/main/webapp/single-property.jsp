@@ -1,21 +1,61 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: nuwanthapasindu
-  Date: 2025-05-13
-  Time: 11:16
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.replp.services.PropertyService" %>
+<%@ page import="com.replp.model.Property" %>
+<%@ page import="java.util.Optional" %>
+<%@ page import="com.replp.model.CommercialProperty" %>
+<%@ page import="com.replp.model.ResidentialProperty" %>
+<%@ page import="com.replp.model.IndustrialProperty" %>
+<%
+    CommercialProperty commercialProperty =null;
+    ResidentialProperty residentialProperty = null;
+    IndustrialProperty industrialProperty = null;
+    String propertyType = null;
+    PropertyService propertyService = new PropertyService();
+    Optional<Property> propertyOptional = propertyService.findByID(request.getParameter("id").toString());
+    if (propertyOptional.isEmpty()) {
+        response.sendRedirect(request.getContextPath() + "/listings.jsp?error=Property not found");
+        return;
+    }
+
+    Property property = propertyOptional.get();
+    if (property instanceof CommercialProperty) {
+        commercialProperty = (CommercialProperty) property;
+        propertyType = "commercial";
+    } else if (property instanceof ResidentialProperty) {
+        residentialProperty = (ResidentialProperty) property;
+        propertyType = "residential";
+    } else if (property instanceof IndustrialProperty) {
+        industrialProperty = (IndustrialProperty) property;
+        propertyType = "industrial";
+    }
+    
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title><%= property.getTitle() %> | Homez</title>
     <!-- Add Inter font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/navbarFooter.css">
-    <link rel="stylesheet" href="./assets/css/singleProperty.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/navbarFooter.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/singleProperty.css">
+    <style>
+        .property-type-badge .badge {
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.5rem 0.8rem;
+        }
+        .no-image-placeholder {
+            height: 300px;
+            background-color: #f8f9fa;
+            border: 1px dashed #dee2e6;
+        }
+        .specific-detail-item {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+    </style>
 </head>
 <body>
 
@@ -25,19 +65,23 @@
         <!-- Property Hero Section -->
         <div class="container pt-5">
             <div class="property-hero">
-                <img src="property-main.jpg" alt="Modern 3-Bedroom Family Home" class="img-fluid w-100 rounded-4">
+                <% if(property.getImages() != null && !property.getImages().isEmpty()) { %>
+                <img src="<%= property.getImages().get(0).getPath() %>" alt="<%= property.getTitle() %>" class="img-fluid w-100 rounded-4">
+                <% } else { %>
+                <div class="no-image-placeholder rounded-4 d-flex align-items-center justify-content-center">
+                    <p class="text-muted">No image available</p>
+                </div>
+                <% } %>
             </div>
-
         </div>
-
+    
         <div class="container my-5">
             <!-- Property Header -->
             <div class="row">
                 <div class="col-12">
-                    <h1 class="property-title">Modern 3-Bedroom Family Home with Garden</h1>
-                    <div class="d-flex align-items-center mt-3 gap-3">
-                        <img src="agent.jpg" alt="Agent" class="agent-avatar">
-                        <span class="h5">Ali Tufan</span>
+                    <h1 class="property-title"><%= property.getTitle() %></h1>
+                    <div class="property-type-badge my-2">
+                        <span class="badge bg-primary"><%= propertyType.toUpperCase() %> PROPERTY</span>
                     </div>
                 </div>
             </div>
@@ -49,42 +93,85 @@
                         <div class="row">
                             <div class="col-md-4 property-detail-item d-flex align-items-center flex-column gap-3">
                                 <i class="fas fa-tag"></i>
-                                <h3>Rs 40,500,000</h3>
+                                <h3>LKR <%= String.format("%,.2f", property.getPrice()) %></h3>
                             </div>
                             <div class="col-md-4 property-detail-item d-flex align-items-center flex-column gap-3">
                                 <i class="fas fa-vector-square"></i>
-                                <h3>18 m<sup>2</sup></h3>
+                                <h3><%= property.getSize() %> <%= property.getSizeType() != null ? property.getSizeType() : "m<sup>2</sup>" %></h3>
                             </div>
                             <div class="col-md-4 property-detail-item d-flex align-items-center flex-column gap-3">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <h3>Colombo</h3>
+                                <h3><%= property.getLocation() %></h3>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Property Type-Specific Details -->
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="property-specific-details p-4 bg-light rounded">
+                        <h4 class="mb-3">Additional Details</h4>
+                        <div class="row">
+                            <% if (propertyType.equals("residential") && residentialProperty != null) { %>
+                                <div class="col-md-4 mb-3">
+                                    <div class="specific-detail-item">
+                                        <i class="fas fa-bed me-2 text-primary"></i>
+                                        <span class="fw-bold">Bedrooms:</span> <%= residentialProperty.getBedrooms() %>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="specific-detail-item">
+                                        <i class="fas fa-bath me-2 text-primary"></i>
+                                        <span class="fw-bold">Bathrooms:</span> <%= residentialProperty.getBathrooms() %>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="specific-detail-item">
+                                        <i class="fas fa-car me-2 text-primary"></i>
+                                        <span class="fw-bold">Garage:</span> <%= residentialProperty.isHasGarage() ? "Yes" : "No" %>
+                                    </div>
+                                </div>
+                            <% } else if (propertyType.equals("commercial") && commercialProperty != null) { %>
+                                <div class="col-md-6 mb-3">
+                                    <div class="specific-detail-item">
+                                        <i class="fas fa-building me-2 text-primary"></i>
+                                        <span class="fw-bold">Business Type:</span> <%= commercialProperty.getBusinessType() %>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="specific-detail-item">
+                                        <i class="fas fa-parking me-2 text-primary"></i>
+                                        <span class="fw-bold">Parking Available:</span> <%= commercialProperty.isHasParking() ? "Yes" : "No" %>
+                                    </div>
+                                </div>
+                            <% } else if (propertyType.equals("industrial") && industrialProperty != null) { %>
+                                <div class="col-md-6 mb-3">
+                                    <div class="specific-detail-item">
+                                        <i class="fas fa-industry me-2 text-primary"></i>
+                                        <span class="fw-bold">Industry Type:</span> <%= industrialProperty.getIndustryType() %>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="specific-detail-item">
+                                        <i class="fas fa-truck-loading me-2 text-primary"></i>
+                                        <span class="fw-bold">Loading Dock:</span> <%= industrialProperty.isHasLoadingDock() ? "Yes" : "No" %>
+                                    </div>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <!-- Property Description -->
             <div class="row mt-5">
                 <div class="col-12">
-                    <p class="property-description">
-                        Experience the art of fine living through a thoughtful balance of comfort, style, and functionality. This flexible 3-bedroom home offers an appealing open-plan kitchen/dining/living area with a cozy fireplace, perfect for family gatherings. The spacious primary bedroom features a walk-in closet and an ensuite bathroom. Two additional bedrooms share a well-appointed family bathroom. A versatile study nook provides a dedicated space for work or homework.
-                    </p>
-                    <p class="property-description">
-                        The home's design emphasizes natural light and flow, with large windows overlooking the beautifully landscaped garden. High ceilings and thoughtful storage solutions enhance the sense of space. Energy-efficient features include double-glazed windows, superior insulation, and a modern heating system that ensures year-round comfort while keeping utility costs manageable.
-                    </p>
-                    <p class="property-description">
-                        The property boasts an entertainer's dream outdoor space with a covered patio area perfect for year-round enjoyment. The fully fenced, low-maintenance garden provides a safe play area for children and pets. A double garage with internal access offers convenient, secure parking and additional storage space.
-                    </p>
-                    <p class="property-description">
-                        Located in a sought-after neighborhood, you'll be just minutes from excellent schools, parks, shopping centers, and public transportation. The established community offers a perfect balance of privacy and connectivity.
-                    </p>
-                    <p class="property-description">
-                        Additional features include a security system, high-speed internet connectivity, quality fixtures and fittings throughout, and a dedicated laundry room. Recent updates to the kitchen and bathrooms ensure modern functionality while maintaining the home's timeless appeal.
-                    </p>
-                    <p class="property-description">
-                        This turnkey property represents exceptional value and is ready for immediate occupancy. Schedule a viewing today to experience firsthand the perfect blend of comfort, style, and convenience that makes this house a true home.
-                    </p>
+                    <h4 class="mb-3">Property Description</h4>
+                    <div class="property-description">
+                        <%= property.getDescription() %>
+                    </div>
                 </div>
             </div>
 
@@ -93,23 +180,36 @@
                 <div class="col-12">
                     <h2 class="mb-4">Property Gallery</h2>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <img src="property-1.jpg" alt="Property Exterior" class="img-fluid rounded gallery-img">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <img src="property-2.jpg" alt="Property Front" class="img-fluid rounded gallery-img">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <img src="property-3.jpg" alt="Property Entrance" class="img-fluid rounded gallery-img">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <img src="property-4.jpg" alt="Property Side View" class="img-fluid rounded gallery-img">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <img src="property-5.jpg" alt="Property Wall Detail" class="img-fluid rounded gallery-img">
-                </div>
-                <div class="col-md-4 mb-4">
-                    <img src="property-6.jpg" alt="Property Bathroom" class="img-fluid rounded gallery-img">
+                <% if(property.getImages() != null && !property.getImages().isEmpty()) { 
+                    for(int i = 0; i < property.getImages().size(); i++) { %>
+                        <div class="col-md-4 mb-4">
+                            <img src="<%= property.getImages().get(i).getPath() %>"
+                                 alt="<%= property.getTitle() %> - Image <%= i+1 %>" 
+                                 class="img-fluid rounded gallery-img">
+                        </div>
+                    <% } 
+                } else { %>
+                    <div class="col-12">
+                        <p class="text-muted">No gallery images available</p>
+                    </div>
+                <% } %>
+            </div>
+            
+            <!-- Contact Information -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="contact-box p-4 bg-light rounded">
+                        <h4 class="mb-3">Interested in this property?</h4>
+                        <p>Contact us for more information or to schedule a viewing.</p>
+                        <div class="d-flex flex-column flex-md-row gap-3">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-phone me-2"></i> Contact Agent
+                            </a>
+                            <a href="#" class="btn btn-outline-primary">
+                                <i class="fas fa-heart me-2"></i> Add to Wishlist
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
