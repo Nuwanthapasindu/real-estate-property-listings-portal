@@ -34,7 +34,12 @@
                     <a href="<%= request.getContextPath() %>/auth/publisher/property/create" class="btn btn-primary add-property-btn text-decoration-none">Add New Property</a>
                 </div>
             </div>
-
+            <% String error = request.getParameter("error"); %>
+            <% if (error != null) { %>
+            <div class="alert alert-danger" role="alert">
+                <%= error %>
+            </div>
+            <% } %>
             <!-- Property Grid -->
             <div class="property-grid">
                 <div class="row">
