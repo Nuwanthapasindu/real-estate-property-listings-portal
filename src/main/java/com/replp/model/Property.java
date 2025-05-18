@@ -3,33 +3,45 @@ package com.replp.model;
 import java.util.List;
 
 public class Property {
-    private String _id;
-    private String location;
-    private double price;
-    private double size;
-    private String description;
-    private List<SystemFile> images;
-    private String userId;
+    protected String id;
+    protected String title;
+    protected String location;
+    protected double price;
+    protected double size;
+    protected String sizeType;
+    protected String description;
+    protected List<SystemFile> images;
+    protected String userId;
 
     public Property() {
     }
 
-    public Property(String _id, String location, double price, double size, String description, List<SystemFile> images, String userId) {
-        this._id = _id;
+    public Property(String id, String title, String location, double price, double size, String sizeType, String description, List<SystemFile> images, String userId) {
+        this.id = id;
+        this.title = title;
         this.location = location;
         this.price = price;
         this.size = size;
+        this.sizeType = sizeType;
         this.description = description;
         this.images = images;
         this.userId = userId;
     }
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getLocation() {
@@ -43,7 +55,7 @@ public class Property {
     public double getPrice() {
         return price;
     }
-
+    
     public void setPrice(double price) {
         this.price = price;
     }
@@ -80,10 +92,19 @@ public class Property {
         this.userId = userId;
     }
 
+    public String getSizeType() {
+        return sizeType;
+    }
+
+    public void setSizeType(String sizeType) {
+        this.sizeType = sizeType;
+    }
+
     @Override
     public String toString() {
         return "Property{" +
-                "_id='" + _id + '\'' +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
                 ", location='" + location + '\'' +
                 ", price=" + price +
                 ", size=" + size +
