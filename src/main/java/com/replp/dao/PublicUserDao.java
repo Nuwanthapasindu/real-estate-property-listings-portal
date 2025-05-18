@@ -97,4 +97,26 @@ public class PublicUserDao {
     }
 
 
+    /**
+     * Updates the wish list of a user.
+     * @param user the user whose wish list to update
+     * @return true if the wish list was updated successfully, false otherwise
+     */
+    public boolean updateWishList(PublicUser user){
+        int index = -1;
+        List<PublicUser> users = readUsers();
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getEmail().equals(user.getEmail())) {
+                index = i;
+                break;
+            }
+        }
+        if (index == -1) {
+            return false;
+        }
+        return jsonFileActions.updateJsonFile(user,index);
+    }
+
+
+
 }

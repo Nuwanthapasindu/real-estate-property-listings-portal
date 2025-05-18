@@ -5,14 +5,14 @@ import java.util.List;
 
 public class PublicUser extends User {
     private String type;
-    private List<Property> wishList;
+    private List<String> wishList;
 
     public PublicUser() {
         super();
     }
 
 
-    public PublicUser(String id, String firstName, String lastName, String contactNumber, String email, String password, LocalDateTime createdAt, String type, List<Property> wishList) {
+    public PublicUser(String id, String firstName, String lastName, String contactNumber, String email, String password, LocalDateTime createdAt, String type, List<String> wishList) {
         super(id, firstName, lastName, contactNumber, email, password, createdAt);
         this.type = type;
         this.wishList = wishList;
@@ -26,11 +26,11 @@ public class PublicUser extends User {
         this.type = type;
     }
 
-    public List<Property> getWishList() {
+    public List<String> getWishList() {
         return wishList;
     }
 
-    public void setWishList(List<Property> wishList) {
+    public void setWishList(List<String> wishList) {
         this.wishList = wishList;
     }
 

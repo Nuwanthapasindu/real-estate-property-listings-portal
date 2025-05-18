@@ -44,6 +44,7 @@ public class LoginController extends HttpServlet {
 
             HttpSession session = req.getSession();
             session.setAttribute("isAuthenticated", true);
+            session.setAttribute("userId", userExists.get().getId());
             session.setAttribute("name", userExists.get().getFirstName());
 
 

@@ -205,9 +205,13 @@
                             <a href="#" class="btn btn-primary">
                                 <i class="fas fa-phone me-2"></i> Contact Agent
                             </a>
-                            <a href="#" class="btn btn-outline-primary">
+
+                            <form action="auth/public/wishlist/add" method="post">
+                            <input type="hidden" name="propertyId" value="<%= property.getId() %>" />
+                            <button type="submit" class="btn btn-outline-primary">
                                 <i class="fas fa-heart me-2"></i> Add to Wishlist
-                            </a>
+                            </button>
+                            </form>
                         </div>
                     </div>
                 </div>

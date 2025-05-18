@@ -5,6 +5,7 @@ import com.replp.model.PublicUser;
 import com.replp.util.EmailSender;
 import com.replp.util.PasswordHash;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
@@ -58,8 +59,15 @@ public class PublicAuthServiceImpl implements PublicAuthService {
     public boolean verifyOtp(String email, String inputOtp, String sessionOtp) {
         return inputOtp != null && inputOtp.equals(sessionOtp);
     }
+
     @Override
     public boolean updatePassword(String email, String newPassword) {
         return publicUserDao.updatePassword(email, newPassword);
+    }
+
+    @Override
+    public Optional<PublicUser> findById(String id) {
+        List<PublicUser> users = publicUserDao.readUsers();
+        return users.stream().filter(user -> user.getId().equals(id)).findFirst();
     }
 }

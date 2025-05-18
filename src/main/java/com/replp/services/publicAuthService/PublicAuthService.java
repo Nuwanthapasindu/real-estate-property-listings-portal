@@ -48,4 +48,12 @@ public interface PublicAuthService {
      * @return true if the password was updated successfully, otherwise false
      */
     public boolean updatePassword(String email, String newPassword);
+
+    /**
+     * Updates the password of a user.
+     *
+     * @param id       the id of the user to find
+     * @return true  if the user was found, otherwise false
+     */
+    public Optional<PublicUser> findById(String id);
 }
