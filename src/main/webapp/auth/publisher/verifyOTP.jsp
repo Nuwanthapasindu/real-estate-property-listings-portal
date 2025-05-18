@@ -30,7 +30,7 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 mb-5 mb-lg-0">
-                    <img src="../../img/otpVerification.png" alt="Home Interior" class="img-fluid rounded-4 shadow-sm">
+                    <img src="<%= request.getContextPath()%>/assets/img/publicOtpVerification.png" alt="Home Interior" class="img-fluid rounded-4 shadow-sm">
                 </div>
                 <div class="col-lg-6">
                     <div class="ms-lg-5">

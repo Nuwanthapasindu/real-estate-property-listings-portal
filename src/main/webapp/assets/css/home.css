@@ -1,0 +1,234 @@
+/* Hero Section */
+.heroWrapper {
+    background-image: url("../img/property-4.jpg");
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+.search-bar {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.search-bar .form-control {
+    height: 54px;
+    padding-left: 20px;
+}
+
+.search-bar .btn {
+    height: 54px;
+}
+
+.rounded-pill-start {
+    border-top-left-radius: 50rem !important;
+    border-bottom-left-radius: 50rem !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+.rounded-pill-end {
+    border-top-right-radius: 50rem !important;
+    border-bottom-right-radius: 50rem !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+}
+
+/* Category Cards */
+.category-card {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.icon-circle {
+    width: 70px;
+    height: 70px;
+    background-color: rgba(235, 103, 83, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: var(--color-red);
+}
+
+/* Property Cards */
+.property-card {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
+}
+
+.property-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.property-image {
+    height: 200px;
+    overflow: hidden;
+    position: relative;
+}
+
+.property-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.property-card:hover .property-image img {
+    transform: scale(1.05);
+}
+
+.property-tag {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: var(--color-red);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.property-title {
+    font-weight: 600;
+    color: var(--color-black);
+}
+
+.price-tag {
+    font-weight: 700;
+    color: var(--color-red);
+}
+
+.address {
+    color: var(--color-blue-gray);
+    font-size: 0.9rem;
+}
+
+/* Selling Guidance Section */
+.check-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.check-list li {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.check-list li i {
+    color: var(--color-red);
+    font-size: 1.2rem;
+}
+
+/* Testimonials */
+.testimonial-card {
+    background-color: var(--color-white);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-rating {
+    color: #ffd700;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: var(--color-blue-gray);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-white);
+    border-radius: 50%;
+    color: var(--color-black);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 0 5px;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+    background-color: var(--color-red);
+    color: var(--color-white);
+}
+
+/* CTA Section */
+.cta-section {
+    background-color: var(--color-light-gray);
+}
+
+/* Footer */
+.footer {
+    background-color: var(--color-dark-blue);
+}
+
+.footer-brand {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.3rem;
+}
+
+.footer .nav-link {
+    padding: 0.25rem 0.75rem !important;
+}
+
+.footer .list-inline-item:not(:last-child) {
+    margin-right: 1rem;
+}
+
+.footer .list-inline-item a {
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.footer .list-inline-item a:hover {
+    color: var(--color-red) !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .navbar .btn {
+        margin-top: 10px;
+    }
+
+    .min-vh-75 {
+        min-height: 60vh;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .footer {
+        text-align: center;
+    }
+
+    .footer-brand {
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .search-bar {
+        padding: 15px !important;
+    }
+}
