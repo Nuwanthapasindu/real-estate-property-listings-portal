@@ -6,16 +6,20 @@ import com.replp.model.Property;
 import com.replp.model.ResidentialProperty;
 import com.replp.services.PropertyService;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.*;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Optional;
 
 @WebServlet("/auth/publisher/property/update")
+@MultipartConfig(
+        fileSizeThreshold = 1024 * 1024 * 2, // 2MB
+        maxFileSize = 1024 * 1024 * 10,     // 10MB
+        maxRequestSize = 1024 * 1024 * 50   // 50MB
+)
 public class PropertyUpdateController extends HttpServlet {
     PropertyService propertyService = new PropertyService();
     @Override
@@ -73,6 +77,8 @@ public class PropertyUpdateController extends HttpServlet {
         String bedroomsStr = req.getParameter("bedrooms");
         String bathroomsStr = req.getParameter("bathrooms");
         String hasGarage = req.getParameter("hasGarage");
+
+        Collection<Part> fileParts = req.getParts();
 
         int bedrooms = bedroomsStr != null ? Integer.parseInt(bedroomsStr) : 0;
         int bathrooms = bathroomsStr != null ? Integer.parseInt(bathroomsStr) : 0;
@@ -209,7 +215,7 @@ public class PropertyUpdateController extends HttpServlet {
                     resp.sendRedirect(req.getContextPath() + "/auth/publisher/property?error=Failed to update property");
                     return;
                 }
-                if (propertyService.updateProperty(updataedProperty)) {
+                if (propertyService.updateProperty(req,updataedProperty, fileParts)) {
                     resp.sendRedirect(req.getContextPath() + "/auth/publisher/property?success=Property updated successfully");
                     return;
                 } else {

@@ -68,7 +68,7 @@
             </div>
 
             <!-- Property Form -->
-            <form method="post" action="" id="propertyForm">
+            <form method="post" action="" id="propertyForm" enctype="multipart/form-data">
                 <input type="hidden" readonly name="propertyId" value="<%= property.getId() %>">
                 <div class="mb-4">
                     <label for="propertyTitle" class="form-label">Property Title</label>
@@ -168,22 +168,44 @@
                 <div class="mb-4">
                     <label class="form-label">Images</label>
                     <div class="image-upload-container">
-                        <div class="uploaded-images" id="uploadedImages">
-                            <% for (SystemFile file : property.getImages()) { %>
-                            <img src="<%= file.getPath() %>" class="image-preview" alt="img-preview" />
-                            <% } %>
+                        <div class="upload-area" id="uploadArea">
+                            <label for="fileInput" class="btn btn-outline-secondary upload-btn">
+                                <i class="fas fa-plus"></i> Click here to upload
+                            </label>
+                            <input type="file" name="images[]" id="fileInput" accept="image/jpeg,image/png" multiple class="d-none">
+                            <p class="text-muted small">.jpg .png Only</p>
                         </div>
-
+                        <div class="uploaded-images" id="uploadedImages">
+                            <!-- Preview images will appear here -->
+                        </div>
                     </div>
                 </div>
                 <button type="submit" class="btn w-100 btn-primary add-property-btn">Update Property</button>
             </form>
         </div>
+
+        <div class="properties-section mt-4">
+            <div class="mb-4">
+                <label class="form-label">Images</label>
+                <div class="image-upload-container">
+                    <div class="uploaded-images">
+                        <% for (SystemFile file : property.getImages()) { %>
+                        <img src="<%= file.getPath() %>" class="image-preview" alt="img-preview" />
+                        <% } %>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
     </div>
 </div>
 
 <!-- Bootstrap JS Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<%= request.getContextPath() %>/js/dashboard/dashboard.js"></script>
+<script src="<%= request.getContextPath() %>/js/dashboard/createProperty.js"></script>
+
 </body>
 </html>

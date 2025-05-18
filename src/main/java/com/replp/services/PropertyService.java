@@ -69,8 +69,26 @@ public class PropertyService {
         return properties.stream().filter(property -> property.getUserId().equalsIgnoreCase(userId)).collect(Collectors.toList());
     }
 
-    public boolean updateProperty(Property property) throws Exception {
-        return propertyDao.updateProperty(property);
+    public boolean updateProperty(HttpServletRequest req,Property property, Collection<Part> parts) throws Exception {
+        final String UPLOAD_FOLDER = req.getServletContext().getRealPath("/uploads");
+        try {
+            List<SystemFile> images = property.getImages();
+            for (Part part : parts) {
+                if ("images[]".equals(part.getName()) && part.getSize() > 0) {
+                    String path = FileUtil.saveUploadedFile(req, part, UPLOAD_FOLDER);
+                    images.add(new SystemFile(UUIDGenerator.generate(), part.getSubmittedFileName(), path, part.getSize(), part.getContentType(), LocalDateTime.now()));
+                }
+
+             }
+
+            property.setImages(images);
+            return propertyDao.updateProperty(property);
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
 }
