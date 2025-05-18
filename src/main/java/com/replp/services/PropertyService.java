@@ -91,4 +91,29 @@ public class PropertyService {
 
     }
 
+    public boolean deletePropertyImage(String propertyId,String imageId) throws Exception {
+        Optional<Property> property = findByID(propertyId);
+        if(property.isPresent()){
+            Property foundProperty = property.get();
+            List<SystemFile> images = foundProperty.getImages();
+            int index = -1;
+            for (int i = 0; i < images.size(); i++) {
+                if (images.get(i).getId().equals(imageId)) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1) {
+                throw new Exception("Property not found");
+            }
+
+            // Delete the image file
+            FileUtil.deleteFile(images.get(index).getPath());
+            images.remove(index);
+            foundProperty.setImages(images);
+            return propertyDao.updateProperty(foundProperty);
+        }
+        else throw new Exception("Property not found");
+
+    }
 }

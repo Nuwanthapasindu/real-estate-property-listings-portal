@@ -190,7 +190,13 @@
                 <div class="image-upload-container">
                     <div class="uploaded-images">
                         <% for (SystemFile file : property.getImages()) { %>
-                        <img src="<%= file.getPath() %>" class="image-preview" alt="img-preview" />
+                        <form action="<%= request.getContextPath() %>/auth/publisher/property/delete/image" method="post">
+                            <input type="hidden" name="propertyId" value="<%= property.getId() %>">
+                            <input type="hidden" name="fileId" value="<%= file.getId() %>">
+                            <button type="submit" class="btn">
+                                <img src="<%= file.getPath() %>" class="image-preview" alt="img-preview" />
+                            </button>
+                        </form>
                         <% } %>
                     </div>
 
