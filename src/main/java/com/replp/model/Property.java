@@ -5,30 +5,27 @@ import java.util.List;
 public class Property {
     protected String id;
     protected String title;
-    protected String type;
     protected String location;
     protected double price;
     protected double size;
+    protected String sizeType;
     protected String description;
-    protected List<File> images;
+    protected List<SystemFile> images;
     protected String userId;
 
     public Property() {
     }
 
-    public Property(String id, String title, String type, String location, double price, double size, String description, List<File> images, String userId) {
+    public Property(String id, String title, String location, double price, double size, String sizeType, String description, List<SystemFile> images, String userId) {
         this.id = id;
         this.title = title;
-        this.type = type;
         this.location = location;
         this.price = price;
         this.size = size;
+        this.sizeType = sizeType;
         this.description = description;
         this.images = images;
         this.userId = userId;
-    }
-
-    public Property(String number, String villa, String house, String miami, int i, int i1, String luxuryVilla) {
     }
 
     public String getId() {
@@ -47,14 +44,6 @@ public class Property {
         this.title = title;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getLocation() {
         return location;
     }
@@ -66,7 +55,7 @@ public class Property {
     public double getPrice() {
         return price;
     }
-
+    
     public void setPrice(double price) {
         this.price = price;
     }
@@ -87,11 +76,11 @@ public class Property {
         this.description = description;
     }
 
-    public List<File> getImages() {
+    public List<SystemFile> getImages() {
         return images;
     }
 
-    public void setImages(List<File> images) {
+    public void setImages(List<SystemFile> images) {
         this.images = images;
     }
 
@@ -103,10 +92,19 @@ public class Property {
         this.userId = userId;
     }
 
+    public String getSizeType() {
+        return sizeType;
+    }
+
+    public void setSizeType(String sizeType) {
+        this.sizeType = sizeType;
+    }
+
     @Override
     public String toString() {
         return "Property{" +
                 "id='" + id + '\'' +
+                ", title='" + title + '\'' +
                 ", location='" + location + '\'' +
                 ", price=" + price +
                 ", size=" + size +
