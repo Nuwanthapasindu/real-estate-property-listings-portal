@@ -68,35 +68,37 @@
             </div>
 
             <!-- Property Form -->
-            <form id="propertyForm">
+            <form method="post" action="" id="propertyForm">
                 <input type="hidden" readonly name="propertyId" value="<%= property.getId() %>">
                 <div class="mb-4">
                     <label for="propertyTitle" class="form-label">Property Title</label>
-                    <input type="text" class="form-control" id="propertyTitle" placeholder="Property Title" readonly  value="<%= property.getTitle() %>">
+                    <input type="text" class="form-control" id="propertyTitle" placeholder="Property Title" name="title"  value="<%= property.getTitle() %>">
                 </div>
 
                 <div class="mb-4">
                     <label for="propertyType" class="form-label">Property Type</label>
                     <select class="form-select" id="propertyType" disabled >
-                        <option selected> <%= propertyType %> </option>
+                        <option value="commercial" <%= propertyType.equalsIgnoreCase("CommercialProperty")? "selected":"" %> >Commercial</option>
+                        <option value="industrial" <%= propertyType.equalsIgnoreCase("IndustrialProperty")? "selected":"" %> >Industrial</option>
+                        <option value="residential" <%= propertyType.equalsIgnoreCase("ResidentialProperty")? "selected":"" %> >Residential</option>
                     </select>
                 </div>
 
                 <div class="mb-4">
                     <label for="location" class="form-label">Location</label>
-                    <input type="text" class="form-control" id="location" placeholder="Location" value="<%= property.getLocation() %>" >
+                    <input type="text" class="form-control" id="location" placeholder="Location" name="location" value="<%= property.getLocation() %>" >
                 </div>
 
                 <div class="mb-4">
                     <label for="price" class="form-label">Price</label>
-                    <input type="number" class="form-control" id="price" placeholder="Price" value="<%= formattedPrice %>" >
+                    <input type="number" class="form-control" id="price" placeholder="Price" name="price" value="<%= formattedPrice %>" >
                 </div>
 
                 <div class="mb-4">
                     <label for="size" class="form-label">Size</label>
                     <div class="input-group">
-                        <input type="number" class="form-control" id="size" value="<%= property.getSize() %>">
-                        <select class="form-select" id="sizeUnit">
+                        <input type="number" class="form-control" id="size" name="size" value="<%= property.getSize() %>">
+                        <select class="form-select" id="sizeUnit" name="sizeType">
                             <option <%= "Perch".equalsIgnoreCase(property.getSizeType())? "selected":"" %>>Perch</option>
                             <option <%= "Sq ft".equalsIgnoreCase(property.getSizeType())? "selected":"" %>>Sq ft</option>
                             <option <%= "Sq m".equalsIgnoreCase(property.getSizeType())? "selected" :""%>>Sq m</option>
@@ -107,7 +109,7 @@
 
                 <div class="mb-4">
                     <label for="description" class="form-label">Description</label>
-                    <textarea class="form-control" id="description" rows="5"><%= property.getDescription() %></textarea>
+                    <textarea class="form-control" id="description" name="description" rows="5"><%= property.getDescription() %></textarea>
                 </div>
                 <% if (propertyType.equalsIgnoreCase("CommercialProperty")){
                     %>
@@ -117,7 +119,7 @@
                         <input type="text" class="form-control" id="businessType" name="businessType" value="<%= commercialProperty.getBusinessType() %>" placeholder="e.g., Retail, Office, Restaurant">
                     </div>
                     <div class="mb-4 form-check">
-                        <input type="checkbox" class="form-check-input" id="hasParking" name="hasParking" value="<%= commercialProperty.isHasParking() %>">
+                        <input type="checkbox" class="form-check-input" id="hasParking" name="hasParking" checked="<%= commercialProperty.isHasParking()%>" value="<%= commercialProperty.isHasParking() %>">
                         <label class="form-check-label" for="hasParking">Has Parking</label>
                     </div>
                 </div>
@@ -134,7 +136,7 @@
                         <input type="text" class="form-control" id="industryType" name="industryType" value="<%= industrialProperty.getIndustryType() %>" placeholder="e.g., Manufacturing, Warehouse, Factory">
                     </div>
                     <div class="mb-4 form-check">
-                        <input type="checkbox" class="form-check-input" id="hasLoadingDock" name="hasLoadingDock" value="<%= industrialProperty.isHasLoadingDock() %>">
+                        <input type="checkbox" class="form-check-input" id="hasLoadingDock" name="hasLoadingDock" checked="<%= industrialProperty.isHasLoadingDock()%>" value="<%= industrialProperty.isHasLoadingDock() %>">
                         <label class="form-check-label" for="hasLoadingDock">Has Loading Dock</label>
                     </div>
                 </div>
@@ -142,8 +144,7 @@
                     }
                 %>
 
-                <% if (propertyType.equalsIgnoreCase("ResidentialProperty")){
-                %>
+                <% if (propertyType.equalsIgnoreCase("ResidentialProperty")){%>
 
                 <div id="residentialFields" class="property-type-fields">
                     <div class="mb-4">
@@ -155,7 +156,7 @@
                         <input type="number" class="form-control" id="bathrooms" name="bathrooms" min="0" value="<%= residentialProperty.getBathrooms() %>">
                     </div>
                     <div class="mb-4 form-check">
-                        <input type="checkbox" class="form-check-input" id="hasGarage" name="hasGarage" value="<%= residentialProperty.isHasGarage() %>">
+                        <input type="checkbox" class="form-check-input" id="hasGarage" name="hasGarage" value="<%= residentialProperty.isHasGarage() %>" checked="<%= residentialProperty.isHasGarage() %>">
                         <label class="form-check-label" for="hasGarage">Has Garage</label>
                     </div>
                 </div>
@@ -175,7 +176,7 @@
 
                     </div>
                 </div>
-                <button type="button" class="btn w-100 btn-primary add-property-btn">Update Property</button>
+                <button type="submit" class="btn w-100 btn-primary add-property-btn">Update Property</button>
             </form>
         </div>
     </div>

@@ -125,23 +125,51 @@ public class PropertyDao {
         return jsonFileActionsForResidential.readJsonFile(new TypeReference<List<ResidentialProperty>>() {});
     }
 
-
-//    public boolean deleteCommercialProperty( int index,String ID){
-//        PropertyBST.deleteById(ID);
-//        return  jsonFileActions.deleteJsonFile(index);
-//    }
-//
-//    public boolean deleteResidentialProperty( int index,String ID){
-//        PropertyBST.deleteById(ID);
-//
-//        return  jsonFileActions.deleteJsonFile(index);
-//    }
-//
-//    public boolean deleteIndustrialProperty( int index,String ID){
-//        PropertyBST.deleteById(ID);
-//
-//        return  jsonFileActions.deleteJsonFile(index);
-//    }
+    public boolean updateProperty(Property property) throws Exception {
+        if (property instanceof CommercialProperty) {
+            int index = -1;
+            List<CommercialProperty> commercialProperties = commercialProperties();
+            for (int i = 0; i < commercialProperties.size(); i++) {
+                if (commercialProperties.get(i).getId().equals(property.getId())) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1) {
+                throw new Exception("Property not found");
+            }
+            PropertyBST.updateById(property.getId(), property);
+            return  jsonFileActionsForCommercial.updateJsonFile(property,index);
+        } else if (property instanceof IndustrialProperty) {
+            int index = -1;
+            List<IndustrialProperty> industrialProperties = industrialProperties();
+            for (int i = 0; i < industrialProperties.size(); i++) {
+                if (industrialProperties.get(i).getId().equals(property.getId())) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1) {
+                throw new Exception("Property not found");
+            }
+            PropertyBST.updateById(property.getId(), property);
+            return  jsonFileActionsForIndustrial.updateJsonFile(property,index);
+        } else if (property instanceof ResidentialProperty) {
+            int index = -1;
+            List<ResidentialProperty> residentialProperties = residentialProperties();
+            for (int i = 0; i < residentialProperties.size(); i++) {
+                if (residentialProperties.get(i).getId().equals(property.getId())) {
+                    index = i;
+                    break;
+                }
+            }
+            if (index == -1) {
+                throw new Exception("Property not found");
+            }
+            PropertyBST.updateById(property.getId(), property);
+            return jsonFileActionsForResidential.updateJsonFile(property, index);
+        }else  throw new Exception("Invalid property type");
+    }
 
 
 }

@@ -26,17 +26,17 @@ public class PropertyService {
         try {
 
             for (Part part : parts) {
-                if ("images[]".equals(part.getName())&& part.getSize() >0){
+                if ("images[]".equals(part.getName()) && part.getSize() > 0) {
 
-                String path = FileUtil.saveUploadedFile(req, part, UPLOAD_FOLDER);
-                files.add(new SystemFile(UUIDGenerator.generate(), part.getSubmittedFileName(), path, part.getSize(), part.getContentType(), LocalDateTime.now()));
+                    String path = FileUtil.saveUploadedFile(req, part, UPLOAD_FOLDER);
+                    files.add(new SystemFile(UUIDGenerator.generate(), part.getSubmittedFileName(), path, part.getSize(), part.getContentType(), LocalDateTime.now()));
                 }
             }
 
             property.setImages(files);
             return propertyDao.writeProperty(property);
 
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -44,27 +44,33 @@ public class PropertyService {
     public boolean deleteProperty(String ID) throws Exception {
         Optional<Property> property = findByID(ID);
         if (property.isPresent()) {
-            boolean deleted = propertyDao.deleteProperty(property.get(),ID);
+            boolean deleted = propertyDao.deleteProperty(property.get(), ID);
             if (deleted) {
                 for (SystemFile file : property.get().getImages()) {
                     FileUtil.deleteFile(file.getPath());
                 }
             }
 
-        }else throw new Exception("Property not found");
+        } else throw new Exception("Property not found");
         return true;
 
-   }
-   public Optional<Property> findByID(String ID){
-       return  propertyDao.findPropertyByID(ID);
-   }
+    }
 
-   public List<Property>getAllProperties(){
+    public Optional<Property> findByID(String ID) {
+        return propertyDao.findPropertyByID(ID);
+    }
+
+    public List<Property> getAllProperties() {
         return propertyDao.getAllProperties();
-   }
+    }
 
-   public List<Property>getPropertiesByUser(String userId){
-       List<Property>properties= getAllProperties();
-       return properties.stream().filter(property -> property.getUserId().equalsIgnoreCase(userId)).collect(Collectors.toList());
-   }
+    public List<Property> getPropertiesByUser(String userId) {
+        List<Property> properties = getAllProperties();
+        return properties.stream().filter(property -> property.getUserId().equalsIgnoreCase(userId)).collect(Collectors.toList());
+    }
+
+    public boolean updateProperty(Property property) throws Exception {
+        return propertyDao.updateProperty(property);
+    }
+
 }
