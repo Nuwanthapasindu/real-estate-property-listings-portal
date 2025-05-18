@@ -2,6 +2,7 @@ package com.replp.services;
 
 
 import com.replp.dao.UserDAO;
+import com.replp.model.Publisher;
 import com.replp.model.User;
 import com.replp.util.EmailSender;
 import com.replp.util.PasswordHash;
@@ -12,7 +13,7 @@ import java.util.Random;
 public class PublisherAuthService {
     private final UserDAO userDAO =new UserDAO();
 
-    public boolean registerUser(User user) throws Exception{
+    public boolean registerUser(Publisher user) throws Exception{
 //        Check email is exists
         if (userDAO.findByEmail(user.getEmail()).isPresent()){
             throw new Exception("User all ready exists..");
@@ -21,10 +22,10 @@ public class PublisherAuthService {
         return userDAO.writeUser(user);
     }
 
-    public Optional<User> authenticate(String email, String plainPassword) {
-        Optional<User> isEmailExists = userDAO.findByEmail(email);
+    public Optional<Publisher> authenticate(String email, String plainPassword) {
+        Optional<Publisher> isEmailExists = userDAO.findByEmail(email);
         if (isEmailExists.isPresent()){
-            User user = isEmailExists.get();
+            Publisher user = isEmailExists.get();
 
             if (PasswordHash.checkPassword(plainPassword, user.getPassword())){
                 return Optional.of(user);
@@ -35,7 +36,7 @@ public class PublisherAuthService {
     }
 
     public String generateAndSendOtp(String email) {
-        Optional<User> userOpt = userDAO.findByEmail(email);
+        Optional<Publisher> userOpt = userDAO.findByEmail(email);
         if (!userOpt.isPresent()) {
             return null; // email not found
         }

@@ -17,41 +17,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../../css/otpVerification.css">
+    <link rel="stylesheet" href="../../assets/css/main.css">
+    <link rel="stylesheet" href="../../assets/css/login.css">
+    <link rel="stylesheet" href="../../assets/css/navbarFooter.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="../../img/logo.png" alt="Homez" class="logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Listings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
-                    </li>
-                </ul>
-                <div class="nav-right d-flex align-items-center">
-                    <a href="#" class="btn-link me-4">
-                        <i class="fas fa-user me-2"></i> Login / Register
-                    </a>
-                </div>
-            </div>
-        </div>
-    </nav>
+
+<jsp:include page="/components/navbar-dark.jsp" />
 
     <!-- Main Content -->
     <main class="py-5">
@@ -90,46 +62,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-dark text-white py-5">
-        <div class="container">
-            <div class="row align-items-center text-center text-md-start py-4">
-                <div class="col-md-3 mb-4 mb-md-0">
-                    <a href="#" class="footer-brand d-inline-block">
-                        <img src="../../img/logo-white.png" alt="Homez" class="logo">
-                    </a>
-                </div>
-                <div class="col-md-6 mb-4 mb-md-0">
-                    <ul class="list-unstyled d-flex flex-column flex-md-row justify-content-center mb-0 gap-3">
-                        <li class="mb-3 mb-md-0">
-                            <a href="#" class="text-primary text-decoration-none">Home</a>
-                        </li>
-                        <li class="mb-3 mb-md-0 ms-md-4">
-                            <a href="#" class="text-white text-decoration-none">Properties</a>
-                        </li>
-                        <li class="mb-3 mb-md-0 ms-md-4">
-                            <a href="#" class="text-white text-decoration-none">About Us</a>
-                        </li>
-                        <li class="mb-3 mb-md-0 ms-md-4">
-                            <a href="#" class="text-white text-decoration-none">Contact Us</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-md-3">
-                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
-                        <a href="#" class="text-white"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-github"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="text-center pt-4 border-top border-secondary">
-                <p class="mb-0">© Copyright 2023. All Rights Reserved by INVIDIA®</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../../assets/js/otpVerification.js"></script>
+    <jsp:include page="/components/footer.jsp" />
+<script src="<%= request.getContextPath()%>/assets/js/otpVerification.js"></script>
 </body>
 </html>

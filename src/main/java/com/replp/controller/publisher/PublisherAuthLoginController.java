@@ -1,6 +1,6 @@
 package com.replp.controller.publisher;
 
-import com.replp.model.User;
+import com.replp.model.Publisher;
 import com.replp.services.PublisherAuthService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -28,14 +28,14 @@ public class PublisherAuthLoginController extends HttpServlet {
             return;
         }
         try {
-            Optional<User> userExists = publisherAuthService.authenticate(email,password);
+            Optional<Publisher> userExists = publisherAuthService.authenticate(email,password);
 
             if (!userExists.isPresent()) {
             resp.sendRedirect(req.getContextPath() +"/auth/publisher/login.jsp?error=Invalid email or password.");
             return;
             }
 
-            User user = userExists.get();
+            Publisher user = userExists.get();
             HttpSession session = req.getSession();
             session.setAttribute("id",user.getId());
             session.setAttribute("firstName",user.getFirstName());

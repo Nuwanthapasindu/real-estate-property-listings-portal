@@ -1,6 +1,7 @@
 package com.replp.dao;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.replp.model.Publisher;
 import com.replp.model.User;
 import com.replp.util.FileNames;
 import com.replp.util.JsonFileActions;
@@ -10,15 +11,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class UserDAO {
-   final JsonFileActions  jsonFileActions = new JsonFileActions(System.getProperty("user.home") + "/.replp/"+ FileNames.USERS);
+   final JsonFileActions  jsonFileActions = new JsonFileActions(System.getProperty("user.home") + "/.replp/"+ FileNames.PUBLISHERS);
 
     /**
      * Reads the list of users from the file containing the list of users.
      *
      * @return the list of users
      */
-    public List<User> readUsers() {
-        return jsonFileActions.readJsonFile(new TypeReference<List<User>>() {});
+    public List<Publisher> readUsers() {
+        return jsonFileActions.readJsonFile(new TypeReference<List<Publisher>>() {});
     }
 
     /**
@@ -27,9 +28,9 @@ public class UserDAO {
      * @param id the id of the user to find
      * @return an Optional containing the user if found, empty otherwise
      */
-    public Optional<User> findUserById(String id) {
-        List<User> users = readUsers();
-        User findUuser = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElse(null);
+    public Optional<Publisher> findUserById(String id) {
+        List<Publisher> users = readUsers();
+        Publisher findUuser = users.stream().filter(user -> user.getId().equals(id)).findFirst().orElse(null);
         return Optional.ofNullable(findUuser);
     }
 
@@ -39,13 +40,13 @@ public class UserDAO {
      * @param users the user to write
      * @return true if the write is successful, false otherwise
      */
-    public boolean writeUser(User users) {
+    public boolean writeUser(Publisher users) {
         return jsonFileActions.writeJsonFile(users);
     }
 
-    public Optional<User> findByEmail(String email){
-        List<User> users = readUsers();
-        User findUuser = users.stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
+    public Optional<Publisher> findByEmail(String email){
+        List<Publisher> users = readUsers();
+        Publisher findUuser = users.stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
         return Optional.ofNullable(findUuser);
 
     }
@@ -57,11 +58,11 @@ public class UserDAO {
      */
     public boolean updatePassword(String email, String newPassword) {
         // Find the user by email
-        User selectedUser = null;
+        Publisher selectedUser = null;
         int selectedUserIndex = -1;
 
         // Read the list of users from the users.json file
-        List<User> users = readUsers();
+        List<Publisher> users = readUsers();
 
         // Iterate over the list of users and find the user by email
         for (int i = 0; i < users.size(); i++) {

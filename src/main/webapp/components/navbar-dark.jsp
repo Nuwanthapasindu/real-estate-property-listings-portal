@@ -45,7 +45,7 @@
                 <% } %>
             </div>
             <div class="nav-right become-partner">
-                <a href="#" class="btn btn-primary">
+                <a href="<%= request.getContextPath()%>/auth/publisher/login.jsp" class="btn btn-primary">
                     Become a Property <br> Partner
                 </a>
             </div>

@@ -1,5 +1,6 @@
 package com.replp.controller.publisher;
 
+import com.replp.model.Publisher;
 import com.replp.model.User;
 import com.replp.services.PublisherAuthService;
 import com.replp.util.PasswordHash;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 @WebServlet(urlPatterns = {"/auth/publisher/register"}, name = "PublisherAuthController", description = "Publisher Authentication Controller")
 public class PublisherAuthController extends HttpServlet {
@@ -55,7 +57,7 @@ public class PublisherAuthController extends HttpServlet {
             return;
         }
 
-        User user = new User(UUIDGenerator.generate(),firstName,lastName,phone,email, PasswordHash.hashPassword(password));
+        Publisher user = new Publisher(UUIDGenerator.generate(),firstName,lastName,phone,email, PasswordHash.hashPassword(password), LocalDateTime.now(),"PUBLISHER");
         try {
             boolean isRegisterSuccess = publisherAuthService.registerUser(user);
             if (isRegisterSuccess){
