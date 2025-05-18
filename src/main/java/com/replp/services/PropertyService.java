@@ -1,5 +1,6 @@
 package com.replp.services;
 
+import com.replp.DSA.PropertySorter;
 import com.replp.dao.PropertyDao;
 import com.replp.model.*;
 import com.replp.util.FileUtil;
@@ -62,6 +63,58 @@ public class PropertyService {
 
     public List<Property> getAllProperties() {
         return propertyDao.getAllProperties();
+    }
+
+    public List<Property> filterProperties(String type, String search, String priceOrder) {
+
+        if (priceOrder == null) {
+            priceOrder = "ASC";
+        }
+
+
+        if (search != null && !search.isEmpty()) {
+            return propertyDao.getPropertiesByTitle(search);
+        }
+
+        List <Property> properties = getAllProperties();
+        PropertySorter.quickSortByPrice(properties, priceOrder);
+
+        if (type != null && !type.isEmpty()) {
+            List<Property> filteredProperties = new ArrayList<>();
+            if (type.equalsIgnoreCase("CommercialProperty")) {
+
+                for (Property property : properties) {
+                    if (property instanceof CommercialProperty) {
+                        filteredProperties.add(property);
+                    }
+                }
+                return filteredProperties;
+            }
+
+            if (type.equalsIgnoreCase("IndustrialProperty")) {
+
+                for (Property property : properties) {
+                    if (property instanceof IndustrialProperty) {
+                        filteredProperties.add(property);
+                    }
+                }
+                return filteredProperties;
+            }
+            if (type.equalsIgnoreCase("ResidentialProperty")) {
+
+                for (Property property : properties) {
+                    if (property instanceof ResidentialProperty) {
+                        filteredProperties.add(property);
+                    }
+                }
+                return filteredProperties;
+            }
+            return properties;
+
+
+        }
+        return properties;
+
     }
 
     public List<Property> getPropertiesByUser(String userId) {

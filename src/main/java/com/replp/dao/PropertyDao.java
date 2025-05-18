@@ -171,5 +171,11 @@ public class PropertyDao {
         }else  throw new Exception("Invalid property type");
     }
 
+    public List<Property> getPropertiesByTitle(String title) {
+        Property property = PropertyBST.findByTitle(title);
+        List<Property> properties = new ArrayList<>();
+        properties.add(property);
+        return properties;
+    }
 
 }
