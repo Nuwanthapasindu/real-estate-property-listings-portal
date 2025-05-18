@@ -2,7 +2,7 @@
     String authId = (String) request.getSession().getAttribute("id");
 
     if (authId != null) {
-        response.sendRedirect(request.getContextPath()+"/");
+        response.sendRedirect(request.getContextPath()+"/auth/publisher/login.jsp");
     }
 %>
 <!DOCTYPE html>
