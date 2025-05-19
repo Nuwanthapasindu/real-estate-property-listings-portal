@@ -1,0 +1,219 @@
+.heroWrapper {
+    background-image: url("../img/property-4.jpg");
+}
+
+
+/* Experience Section */
+.experience-section {
+    background-color: var(--color-gray-light);
+    padding: 5rem 0;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.section-subtitle {
+   
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-red);
+    margin-bottom: 0.5rem;
+}
+
+.stat-text {
+    font-size: 1rem;
+    color: var(--color-gray-dark);
+    margin-bottom: 0;
+}
+
+.agent-image img {
+    border-radius: 8px;
+    box-shadow: 0 10px 30px var(--color-gray-dark);
+}
+
+
+/* Selling Options Section */
+.selling-options {
+    background-color: var(--color-gray-light);
+    padding: 5rem 0;
+}
+
+.feature-icon {
+    color: var(--color-red);
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.feature-text {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.selling-images {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.main-image {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 10px 30px var(--color-gray-dark);
+}
+
+.secondary-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    transform: translateY(-30%) translateX(20%);
+    z-index: 2;
+    box-shadow: 0 10px 30px var(--color-gray-dark);
+}
+
+.agents-section {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: var(--color-gray-light);
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px var(--color-gray-dark);
+    transform: translateY(30%);
+    z-index: 3;
+    width: 60%;
+}
+
+.small-text {
+    font-size: 0.9rem;
+    color: var(--color-gray-dark);
+}
+
+.agent-avatars {
+    display: flex;
+}
+
+.agent-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: -10px;
+    border: 2px solid var(--color-gray-light);
+}
+
+.agent-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Footer */
+footer {
+    background-color: var(--secondary-color);
+}
+
+.footer-heading {
+    color: var(--color-gray-light);
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+}
+
+.social-icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-gray-light);
+    transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+    background-color: var(--color-red);
+    color: var(--color-gray-light);
+}
+
+.footer-divider {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin: 2rem 0;
+}
+
+.copyright {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .secondary-image {
+        width: 50%;
+    }
+
+    .agents-section {
+        width: 70%;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .hero-section {
+        height: 400px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .secondary-image {
+        position: relative;
+        transform: none;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .agents-section {
+        position: relative;
+        transform: none;
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .selling-images {
+        padding: 0;
+    }
+}
