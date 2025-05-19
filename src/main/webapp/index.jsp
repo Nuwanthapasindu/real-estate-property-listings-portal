@@ -126,58 +126,8 @@
     </div>
 </section>
 
-<!-- Footer -->
-<footer class="footer py-4 bg-dark-blue text-white">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-md-4 mb-3 mb-md-0">
-                <a class="footer-brand d-flex align-items-center" href="#">
-                    <div class="logo-circle me-2">
-                        <i class="fas fa-home text-white"></i>
-                    </div>
-                    <span>homez</span>
-                </a>
-                <p class="mt-2 mb-0 small">Your trusted partner in real estate since 2010</p>
-            </div>
-            <div class="col-md-4 mb-3 mb-md-0 text-center">
-                <ul class="nav justify-content-center">
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Home</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Properties</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">About Us</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link px-2 text-white">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4 text-center text-md-end">
-                <ul class="list-inline mb-0">
-                    <li class="list-inline-item">
-                        <a href="#" class="text-white">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#" class="text-white">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#" class="text-white">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#" class="text-white">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
 
-<!-- Bootstrap JS Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<!-- Custom JS -->
-<script src="script.js"></script>
+<!-- Footer -->
+<jsp:include page="components/footer.jsp" />
 </body>
 </html>
