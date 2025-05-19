@@ -80,7 +80,13 @@ main {
     padding: 3rem 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.signup-form {
+    max-width: 480px;
+    padding: 2rem;
+}
+
+h1 {
+    font-size: 3rem;
     font-weight: 700;
     color: var(--color-black);
     line-height: 1.2;
@@ -93,73 +99,119 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-control {
-    border: 1px solid var(--color-border-gray);
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
+    padding: 0.875rem 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    font-size: 0.95rem;
+}
+
+.form-control::placeholder {
+    color: var(--color-text-gray);
 }
 
 .form-control:focus {
     border-color: var(--color-primary);
-    box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
-/* OTP Input Styling */
-#otp {
-    letter-spacing: 0.5rem;
-    font-size: 1.5rem;
-    text-align: center;
-    font-weight: 600;
+/* Button styles */
+.btn-primary {
+    background-color: var(--color-red);
+    border: none;
+    padding: 0.875rem;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #e85642;
 }
 
 /* Footer Styles */
 footer {
-    background-color: var(--color-dark-blue);
+    background-color: var(--color-gray-dark);
+    padding: 4rem 0 2rem;
 }
 
-footer .logo {
-    height: 32px;
-}
-
-footer a {
-    transition: color 0.3s ease;
-}
-
-footer a:hover {
-    color: var(--color-red) !important;
-}
-
-footer .fab {
+.footer-brand {
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
     font-size: 1.25rem;
 }
 
-/* Responsive Styles */
-@media (max-width: 992px) {
-    .nav-link {
-        margin: 0.5rem 0;
+.footer-brand img {
+    height: 32px;
+    margin-right: 12px;
+}
+
+.footer-links a {
+    color: var(--color-text-gray);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: var(--color-primary);
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: var(--color-white);
+    font-size: 1.25rem;
+    transition: color 0.2s ease;
+}
+
+.social-links a:hover {
+    color: var(--color-primary);
+}
+
+.user-icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    background-color: var(--color-gray-light);
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.user-icon-circle i {
+    font-size: 16px;
+    color: var(--color-black);
+}
+
+hr.border-secondary {
+    opacity: 0.1;
+    margin: 2rem 0;
+}
+
+footer p {
+    color: var(--color-text-gray);
+    font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
     }
     
-    .nav-right {
-        margin-top: 1rem;
+    .footer-links {
+        margin: 2rem 0;
     }
 }
 
-/* Button Styles */
-.btn {
-    padding: 0.75rem 1.5rem;
-    font-weight: 500;
-    border-radius: 0.5rem;
-    transition: all 0.3s ease;
-}
-
-.btn-lg {
-    padding: 1rem 1.5rem;
-}
-
-/* Utility Classes */
-.rounded-4 {
-    border-radius: 1rem;
-}
-
-.shadow-sm {
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+/* Login specific styles */
+.min-vh-100 {
+    min-height: 80vh !important;
 }

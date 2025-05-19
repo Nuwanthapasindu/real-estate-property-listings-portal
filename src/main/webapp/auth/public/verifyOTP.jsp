@@ -19,10 +19,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../assets/css/main.css">
     <link rel="stylesheet" href="../../assets/css/login.css">
+    <link rel="stylesheet" href="../../assets/css/otpVerification.css">
     <link rel="stylesheet" href="../../assets/css/navbarFooter.css">
 </head>
 <body>
-
 <jsp:include page="/components/navbar-dark.jsp" />
 
     <!-- Main Content -->
@@ -36,6 +36,7 @@
                     <div class="ms-lg-5">
                         <h2 class="display-6 fw-bold mb-4">Help Us Confirm It's You</h2>
                         <p class="text-muted mb-4">Please enter the OTP code sent to your device to verify your identity.</p>
+
                         <% String error = request.getParameter("error"); %>
                         <% if (error != null) { %>
                         <div class="alert alert-danger" role="alert">
@@ -48,9 +49,9 @@
                                 <input type="text" class="form-control form-control-lg" id="otp" name="otp" placeholder="******" maxlength="6" autocomplete="off">
                                 <small class="text-muted mt-2 d-block">Enter the 6-digit code sent to your device</small>
                             </div>
-
-                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">Sign In</button>
-
+                            
+                            <button type="submit" class="btn btn-primary btn-lg w-100 mb-3">Verify</button>
+                            
                             <div class="text-center mt-3">
                                 <p class="mb-0">Didn't receive the code? <a href="#" class="text-primary text-decoration-none">Resend</a></p>
                             </div>
@@ -61,8 +62,7 @@
         </div>
     </main>
 
-    <!-- Footer -->
-    <jsp:include page="/components/footer.jsp" />
+<jsp:include page="/components/footer.jsp" />
 <script src="<%= request.getContextPath()%>/assets/js/otpVerification.js"></script>
 </body>
 </html>

@@ -1,46 +1,71 @@
-document.getElementById('signupForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+// Login form validation
+document.addEventListener('DOMContentLoaded', function() {
+    const loginForm = document.getElementById('loginForm');
     
-    // Get form values
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const password = document.getElementById('password').value;
-    const confirmPassword = document.getElementById('confirmPassword').value;
-
-    // Basic validation
-    if (!firstName || !lastName || !email || !phone || !password || !confirmPassword) {
-        alert('Please fill in all fields');
-        return;
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Simple validation
+            if (!email) {
+                showError('email', 'Email is required');
+                return;
+            } else if (!isValidEmail(email)) {
+                showError('email', 'Please enter a valid email');
+                return;
+            } else {
+                removeError('email');
+            }
+            
+            if (!password) {
+                showError('password', 'Password is required');
+                return;
+            } else {
+                removeError('password');
+            }
+            
+            // If validation passes, you would typically send the data to your server
+            console.log('Login form submitted:', { email, password });
+            
+            // For demo purposes, show success message
+            alert('Login successful!');
+            
+            // Optionally redirect to another page
+            // window.location.href = 'dashboard.html';
+        });
     }
-
-    // Email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert('Please enter a valid email address');
-        return;
+    
+    // Helper functions
+    function showError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        const errorElement = field.nextElementSibling?.classList.contains('error-message') 
+            ? field.nextElementSibling 
+            : document.createElement('div');
+        
+        if (!errorElement.classList.contains('error-message')) {
+            errorElement.classList.add('error-message', 'text-danger', 'mt-1', 'small');
+            field.parentNode.insertBefore(errorElement, field.nextSibling);
+        }
+        
+        errorElement.textContent = message;
+        field.classList.add('is-invalid');
     }
-
-    // Phone validation
-    const phoneRegex = /^\+\d{1,3}\s?\(\d{3}\)\s?\d{3}-\d{4}$/;
-    if (!phoneRegex.test(phone)) {
-        alert('Please enter a valid phone number in the format: +1 (555) 000-0000');
-        return;
+    
+    function removeError(fieldId) {
+        const field = document.getElementById(fieldId);
+        const errorElement = field.nextElementSibling;
+        
+        if (errorElement && errorElement.classList.contains('error-message')) {
+            errorElement.remove();
+        }
+        
+        field.classList.remove('is-invalid');
     }
-
-    // Password validation
-    if (password !== confirmPassword) {
-        alert('Passwords do not match');
-        return;
+    
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
     }
-
-    if (password.length < 8) {
-        alert('Password must be at least 8 characters long');
-        return;
-    }
-
-    // If all validations pass, you can submit the form
-    console.log('Form submitted successfully');
-    // Add your form submission logic here
 });

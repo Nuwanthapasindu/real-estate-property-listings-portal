@@ -1,5 +1,4 @@
-package com.replp.controller;
-
+package com.replp.controller.publicUser;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,12 +7,12 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-
-@WebServlet(urlPatterns = "/tesy", name = "IndexController")
-public class IndexController extends HttpServlet {
+@WebServlet("/auth/public/logout")
+public class LogoutController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("/WEB-INF/jsp/test.jsp").forward(req, resp);
+        req.getSession().invalidate();
+        resp.sendRedirect(req.getContextPath() + "/auth/public/login.jsp");
     }
 }

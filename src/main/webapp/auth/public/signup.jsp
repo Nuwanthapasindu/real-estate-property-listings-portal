@@ -1,8 +1,9 @@
 <%
-    String authId = (String) request.getSession().getAttribute("id");
+    Boolean isAuthenticatedObj = (Boolean) request.getSession().getAttribute("isAuthenticated");
+    boolean isAuthenticated = isAuthenticatedObj != null && isAuthenticatedObj.booleanValue();
 
-    if (authId != null) {
-        response.sendRedirect(request.getContextPath()+"/auth/publisher/login.jsp");
+    if (isAuthenticated) {
+        response.sendRedirect(request.getContextPath()+"/");
     }
 %>
 <!DOCTYPE html>
@@ -20,24 +21,23 @@
     <link rel="stylesheet" href="../../assets/css/navbarFooter.css">
 </head>
 <body>
-
-<jsp:include page="/components/navbar-dark.jsp" />
-
+    <!-- Navigation -->
+    <jsp:include page="/components/navbar-dark.jsp" />
     <!-- Main Content -->
     <main class="container">
         <div class="row align-items-center min-vh-100">
             <div class="col-md-6">
-                <img src="../../img/Image.png" alt="Modern Architecture" class="img-fluid rounded">
+                <img src="<%= request.getContextPath()%>/assets/img/publicSignup.png" alt="Modern Architecture" class="img-fluid rounded">
             </div>
             <div class="col-md-6">
                 <div class="signup-form">
                     <h1 class="mb-4">Let's level up your brand, together</h1>
-                   <% String error = request.getParameter("error"); %>
-                   <% if (error != null) { %>
-                    <div class="alert alert-danger" role="alert">
-                     <%= error %>
-                    </div>
-                    <% } %>
+                        <% String error = request.getParameter("error"); %>
+                        <% if (error != null) { %>
+                        <div class="alert alert-danger" role="alert">
+                            <%= error %>
+                        </div>
+                        <% } %>
                     <form id="signupForm" action="register" method="POST">
                         <div class="mb-3">
                             <label for="firstName" class="form-label">First Name</label>
@@ -65,12 +65,13 @@
                         </div>
                         <button type="submit" class="btn w-100 btn-primary">Signup</button>
                     </form>
+                    <div class="text-center mt-4">
+                        <p>Already have an account? <a href="<%= request.getContextPath()%>/auth/public/login.jsp">Login</a></p>
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-
-    <!-- Footer -->
 <jsp:include page="/components/footer.jsp" />
 </body>
 </html>

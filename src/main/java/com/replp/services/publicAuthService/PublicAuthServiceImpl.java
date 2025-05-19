@@ -1,42 +1,43 @@
-package com.replp.services;
+package com.replp.services.publicAuthService;
 
-
-import com.replp.dao.UserDAO;
-import com.replp.model.Publisher;
-import com.replp.model.User;
+import com.replp.dao.PublicUserDao;
+import com.replp.model.PublicUser;
 import com.replp.util.EmailSender;
 import com.replp.util.PasswordHash;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 
-public class PublisherAuthService {
-    private final UserDAO userDAO =new UserDAO();
+public class PublicAuthServiceImpl implements PublicAuthService {
+    private final PublicUserDao  publicUserDao =new PublicUserDao();
 
-    public boolean registerUser(Publisher user) throws Exception{
-//        Check email is exists
-        if (userDAO.findByEmail(user.getEmail()).isPresent()){
+    @Override
+    public boolean registerUser(PublicUser user) throws Exception {
+        if (publicUserDao.findByEmail(user.getEmail()).isPresent()){
             throw new Exception("User all ready exists..");
         }
 
-        return userDAO.writeUser(user);
+        return publicUserDao.writeUser(user);
     }
 
-    public Optional<Publisher> authenticate(String email, String plainPassword) {
-        Optional<Publisher> isEmailExists = userDAO.findByEmail(email);
+    @Override
+    public Optional<PublicUser> authenticate(String email, String plainPassword) {
+        Optional<PublicUser> isEmailExists = publicUserDao.findByEmail(email);
         if (isEmailExists.isPresent()){
-            Publisher user = isEmailExists.get();
+            PublicUser user = isEmailExists.get();
 
             if (PasswordHash.checkPassword(plainPassword, user.getPassword())){
                 return Optional.of(user);
             }
 
         }
-             return Optional.empty();
+        return Optional.empty();
     }
 
+    @Override
     public String generateAndSendOtp(String email) {
-        Optional<Publisher> userOpt = userDAO.findByEmail(email);
+        Optional<PublicUser> userOpt = publicUserDao.findByEmail(email);
         if (!userOpt.isPresent()) {
             return null; // email not found
         }
@@ -52,14 +53,21 @@ public class PublisherAuthService {
         }else {
             return null;
         }
-
     }
 
+    @Override
     public boolean verifyOtp(String email, String inputOtp, String sessionOtp) {
         return inputOtp != null && inputOtp.equals(sessionOtp);
     }
+
+    @Override
     public boolean updatePassword(String email, String newPassword) {
-        return
-                userDAO.updatePassword(email,newPassword);
+        return publicUserDao.updatePassword(email, newPassword);
+    }
+
+    @Override
+    public Optional<PublicUser> findById(String id) {
+        List<PublicUser> users = publicUserDao.readUsers();
+        return users.stream().filter(user -> user.getId().equals(id)).findFirst();
     }
 }
