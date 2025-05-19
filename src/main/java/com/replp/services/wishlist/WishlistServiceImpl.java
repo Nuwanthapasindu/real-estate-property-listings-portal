@@ -7,6 +7,7 @@ import com.replp.services.PropertyService;
 import com.replp.services.publicAuthService.PublicAuthService;
 import com.replp.services.publicAuthService.PublicAuthServiceImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,53 @@ public class WishlistServiceImpl implements WishlistService {
             return publicUserDao.updateWishList(user);
 
         }else return false;
+
+    }
+
+    @Override
+    public List<Property> getWishlist(String userId) {
+        Optional<PublicUser> user = publicAuthService.findById(userId);
+        List<Property> properties = new ArrayList<>();
+        if (user.isPresent()){
+            List<String> wishlist = user.get().getWishList();
+
+            if (wishlist != null) {
+                for (String propertyId : wishlist) {
+                    Optional<Property> property = propertyService.findByID(propertyId);
+                    if (property.isPresent()) {
+                        properties.add(property.get());
+                    }
+                }
+            }
+
+        }
+                return properties;
+    }
+
+
+    @Override
+    public boolean removeWishlistFromUser(String userId, String propertyId) {
+        // find user by id
+        Optional<PublicUser> userOptional =publicAuthService.findById(userId);
+        // find property by id
+        Optional<Property> property = propertyService.findByID(propertyId);
+
+        // check if user and property exist
+        if (userOptional.isPresent() && property.isPresent()) {
+            PublicUser user = userOptional.get();
+            // get user wishlist
+            List<String> wishlist = user.getWishList();
+            // remove property from wishlist
+            if (wishlist != null) {
+                wishlist.remove(property.get().getId());
+                // update user wishlist
+                user.setWishList(wishlist);
+                return publicUserDao.updateWishList(user);
+            }
+        }
+        return false;
+
+
 
     }
 }
