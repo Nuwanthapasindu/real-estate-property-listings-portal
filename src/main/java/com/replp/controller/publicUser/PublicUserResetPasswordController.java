@@ -9,12 +9,12 @@ import jakarta.servlet.http.*;
 
 import java.io.IOException;
 
-    @WebServlet(name = "ResetPasswordController", urlPatterns = {"/auth/public/reset-password"})
-    public class ResetPasswordController extends HttpServlet {
+    @WebServlet(name = "PublicUserResetPasswordController", urlPatterns = {"/auth/public/reset-password"})
+    public class PublicUserResetPasswordController extends HttpServlet {
 
         private  final PublicAuthService publicAuthService;
 
-        public ResetPasswordController() {
+        public PublicUserResetPasswordController() {
             this.publicAuthService = new PublicAuthServiceImpl();
         }
 
@@ -23,7 +23,9 @@ import java.io.IOException;
             String newPassword = req.getParameter("password");
             String confirmPassword = req.getParameter("confirmPassword");
             HttpSession session = req.getSession();
-            String email = session.getAttribute("email").toString();
+            String email = session.getAttribute("email") == null ? null : session.getAttribute("email").toString();
+
+
 
             if (email == null || newPassword == null || confirmPassword == null || newPassword.isEmpty() || confirmPassword.isEmpty()) {
                 resp.sendRedirect(req.getContextPath() + "/auth/public/resetPassword.jsp?error=Password Required");
