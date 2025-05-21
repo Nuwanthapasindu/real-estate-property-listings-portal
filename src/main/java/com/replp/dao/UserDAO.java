@@ -84,4 +84,59 @@ public class UserDAO {
         // Write the modified user back to the users.json file
         return jsonFileActions.updateJsonFile(selectedUser, selectedUserIndex);
     }
+
+
+    /**
+     * Updates the profile of a given publisher in the system by locating the publisher
+     * in the list of users and updating the corresponding entry in the JSON file.
+     *
+     * @param publisher the publisher object containing updated profile information
+     * @return true if the profile was successfully updated, false otherwise
+     */
+    public boolean updateProfile(Publisher publisher) {
+        // Find the user by email
+        Publisher selectedUser = null;
+        int selectedUserIndex = -1;
+
+        // Read the list of users from the users.json file
+        List<Publisher> users = readUsers();
+
+        // Iterate over the list of users and find the user by email
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId().equals(publisher.getId())) {
+                selectedUser = users.get(i);
+                selectedUserIndex = i;
+                break;
+            }
+        }
+
+        // If the user is not found, return false
+        if (selectedUser == null) {
+            return false;
+        }
+
+        return jsonFileActions.updateJsonFile(publisher, selectedUserIndex);
+
+    }
+
+    public boolean deleteUser(String id) {
+        Publisher selectedUser = null;
+        int selectedUserIndex = -1;
+
+        // Read the list of users from the users.json file
+        List<Publisher> users = readUsers();
+
+        // Iterate over the list of users and find the user by email
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId().equals(id)){
+                selectedUser = users.get(i);
+                selectedUserIndex = i;
+                break;
+            }
+        }
+        if (selectedUser == null) {
+            return false;
+        }
+        return jsonFileActions.deleteJsonFile(selectedUserIndex);
+    }
 }

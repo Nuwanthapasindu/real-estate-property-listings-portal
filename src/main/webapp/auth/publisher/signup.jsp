@@ -27,7 +27,7 @@
     <main class="container">
         <div class="row align-items-center min-vh-100">
             <div class="col-md-6">
-                <img src="../../img/Image.png" alt="Modern Architecture" class="img-fluid rounded">
+                <img src="../../assets/img/Image.png" alt="Modern Architecture" class="img-fluid rounded">
             </div>
             <div class="col-md-6">
                 <div class="signup-form">

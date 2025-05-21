@@ -62,4 +62,20 @@ public class PublisherAuthService {
         return
                 userDAO.updatePassword(email,newPassword);
     }
+
+    public Optional<Publisher> findById(String id) {
+        return userDAO.findUserById(id);
+    }
+
+    public boolean updateProfile(Publisher publisher) {
+        return userDAO.updateProfile(publisher);
+    }
+
+    public boolean deleteProfile(String id) {
+        Optional<Publisher> userOpt = userDAO.findUserById(id);
+        if (userOpt.isPresent()) {
+            return userDAO.deleteUser(id);
+        }
+        else return false;
+    }
 }

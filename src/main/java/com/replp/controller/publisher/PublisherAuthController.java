@@ -64,7 +64,7 @@ public class PublisherAuthController extends HttpServlet {
                 resp.sendRedirect(req.getContextPath()+"/auth/publisher/login.jsp");
             }
         } catch (Exception e) {
-            resp.sendRedirect("auth/signup.jsp?error = Something Went wrong" );
+            resp.sendRedirect(req.getContextPath()+"/auth/publisher/signup.jsp?error="+ e.getMessage());
         }
 
 
