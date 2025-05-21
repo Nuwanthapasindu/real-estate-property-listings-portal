@@ -107,10 +107,12 @@
                 <h4 class="card-title text-danger">Delete Account</h4>
                 <p class="card-text">Warning: This action cannot be undone. All your data will be permanently deleted.</p>
                 
-                <!-- Delete Account Button with Modal -->
-                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
-                    Delete Account
-                </button>
+              <form action="<%=request.getContextPath()%>/auth/publisher/delete" method="post" >
+                  <!-- Delete Account Button with Modal -->
+                  <button type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">
+                      Delete Account
+                  </button>
+              </form>
             </div>
         </div>
 
