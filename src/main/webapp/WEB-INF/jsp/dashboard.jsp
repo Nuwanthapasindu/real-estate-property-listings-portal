@@ -10,8 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/main.css">
-    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/dashboard/dashboard.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/main.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/assets/css/dashboard/dashboard.css">
 </head>
 <body>
 <div class="dashboard-container">
@@ -77,7 +77,7 @@
 
 <!-- Bootstrap JS Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="<%= request.getContextPath() %>/js/dashboard/dashboard.js"></script>
+<script src="<%= request.getContextPath() %>/assets/js/dashboard/dashboard.js"></script>
 <script>
     const propertyPrices = document.querySelectorAll('.property-price');
     propertyPrices.forEach(price => {
