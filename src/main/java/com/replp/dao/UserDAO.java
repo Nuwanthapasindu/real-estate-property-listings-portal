@@ -116,5 +116,27 @@ public class UserDAO {
         }
 
         return jsonFileActions.updateJsonFile(publisher, selectedUserIndex);
+
+    }
+
+    public boolean deleteUser(String id) {
+        Publisher selectedUser = null;
+        int selectedUserIndex = -1;
+
+        // Read the list of users from the users.json file
+        List<Publisher> users = readUsers();
+
+        // Iterate over the list of users and find the user by email
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId().equals(id)){
+                selectedUser = users.get(i);
+                selectedUserIndex = i;
+                break;
+            }
+        }
+        if (selectedUser == null) {
+            return false;
+        }
+        return jsonFileActions.deleteJsonFile(selectedUserIndex);
     }
 }
