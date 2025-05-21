@@ -71,4 +71,11 @@ public class PublisherAuthService {
         return userDAO.updateProfile(publisher);
     }
 
+    public boolean deleteProfile(String id) {
+        Optional<Publisher> userOpt = userDAO.findUserById(id);
+        if (userOpt.isPresent()) {
+            return userDAO.deleteUser(id);
+        }
+        else return false;
+    }
 }
