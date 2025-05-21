@@ -51,7 +51,7 @@
                             </div>
                             <% } %>
 
-                            <form action="update-profile" method="post">
+                            <form action="" method="post">
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <label for="firstName" class="form-label">First Name</label>
@@ -73,17 +73,11 @@
 
                                 <div class="mb-3">
                                     <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="tel" class="form-control" id="phone" name="phone" 
+                                    <input type="tel" class="form-control" id="phone" name="contactNumber"
                                            value="<%= session.getAttribute("contactNumber") %>" required>
                                 </div>
 
                                 <hr class="my-4">
-
-                                <div class="mb-3">
-                                    <label for="currentPassword" class="form-label">Current Password</label>
-                                    <input type="password" class="form-control" id="currentPassword" 
-                                           name="currentPassword" placeholder="Enter current password to make changes">
-                                </div>
 
                                 <div class="mb-3">
                                     <label for="newPassword" class="form-label">New Password (Optional)</label>
