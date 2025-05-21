@@ -85,6 +85,14 @@ public class UserDAO {
         return jsonFileActions.updateJsonFile(selectedUser, selectedUserIndex);
     }
 
+
+    /**
+     * Updates the profile of a given publisher in the system by locating the publisher
+     * in the list of users and updating the corresponding entry in the JSON file.
+     *
+     * @param publisher the publisher object containing updated profile information
+     * @return true if the profile was successfully updated, false otherwise
+     */
     public boolean updateProfile(Publisher publisher) {
         // Find the user by email
         Publisher selectedUser = null;
