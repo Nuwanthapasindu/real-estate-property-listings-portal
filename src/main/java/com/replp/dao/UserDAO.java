@@ -84,4 +84,29 @@ public class UserDAO {
         // Write the modified user back to the users.json file
         return jsonFileActions.updateJsonFile(selectedUser, selectedUserIndex);
     }
+
+    public boolean updateProfile(Publisher publisher) {
+        // Find the user by email
+        Publisher selectedUser = null;
+        int selectedUserIndex = -1;
+
+        // Read the list of users from the users.json file
+        List<Publisher> users = readUsers();
+
+        // Iterate over the list of users and find the user by email
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId().equals(publisher.getId())) {
+                selectedUser = users.get(i);
+                selectedUserIndex = i;
+                break;
+            }
+        }
+
+        // If the user is not found, return false
+        if (selectedUser == null) {
+            return false;
+        }
+
+        return jsonFileActions.updateJsonFile(publisher, selectedUserIndex);
+    }
 }
